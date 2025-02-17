@@ -1,0 +1,19 @@
+{
+  "name": "natours-express4",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Ali Khazaei",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "start:prod": "$env:NODE_ENV = 'production'; nodemon server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^5.13.23",
+    "morgan": "^1.10.0"
+  }
+}
