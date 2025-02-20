@@ -1,4 +1,5 @@
 const Tour = require('./../models/tourModel');
+const APIFeatures = require('./../utils/apiFeatures');
 
 const topTours = (req, res, next) => {
   req.query.limit = '5';
@@ -9,46 +10,6 @@ const topTours = (req, res, next) => {
 
 const getAllTours = async (req, res) => {
   try {
-    const APIFeatures = class {
-      constructor(query, queryStr) {
-        this.query = query;
-        this.queryStr = queryStr;
-      }
-
-      filter() {
-        const filterStr = { ...this.queryStr };
-        const excludedFields = ['sort', 'fields', 'limit', 'page'];
-        excludedFields.forEach(el => delete filterStr[el]);
-        this.query.find(filterStr);
-
-        return this;
-      }
-      sort() {
-        if (this.queryStr.sort) {
-          const sortBy = this.queryStr.sort.split(',').join(' ');
-          this.query.sort(sortBy);
-        } else this.query.sort('-createdAt');
-
-        return this;
-      }
-      projection() {
-        if (this.queryStr.fields) {
-          const fields = this.queryStr.fields.split(',').join(' ');
-          this.query.select(fields);
-        } else this.query.select('-__v');
-
-        return this;
-      }
-      pagination() {
-        const page = +this.queryStr.page || 1;
-        const limit = +this.queryStr.limit || 10;
-        const skip = (page - 1) * limit;
-        this.query.skip(skip).limit(limit);
-
-        return this;
-      }
-    };
-
     //Awaiting the query
     const features = new APIFeatures(Tour.find(), req.query).filter().sort().projection().pagination();
     const tours = await features.query;
@@ -84,7 +45,6 @@ const createTour = async (req, res) => {
 
 const getTour = async (req, res) => {
   try {
-    console.log(req.query);
     const tour = await Tour.findById(req.params.id);
     res.status(200).json({
       status: 'success',
