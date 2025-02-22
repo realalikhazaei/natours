@@ -31,6 +31,7 @@ const getAllTours = async (req, res) => {
 const createTour = async (req, res) => {
   try {
     const newTour = await Tour.create(req.body);
+    console.log('Create operation starting...');
     res.status(201).json({
       status: 'success',
       data: newTour,
