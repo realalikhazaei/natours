@@ -8,8 +8,9 @@ const tourSchema = new mongoose.Schema(
       required: [true, 'Tour name is required'],
       unique: [true, 'Tour name must be unique'],
       trim: true,
+      maxlength: [50, 'Name must be less than or equal to 50 characters'],
+      minlength: [10, 'Name must be greater than or equal to 10 characters'],
     },
-    slug: String,
     duration: {
       type: String,
       required: [true, 'Tour duration is required'],
@@ -17,6 +18,8 @@ const tourSchema = new mongoose.Schema(
     ratingsAverage: {
       type: Number,
       default: 4.5,
+      max: [5.0, 'Rating must be less than or equal to 5.0'],
+      min: [1.0, 'Rating must be greater than or equal to 1.0'],
     },
     ratingsQuantity: {
       type: Number,
@@ -29,12 +32,24 @@ const tourSchema = new mongoose.Schema(
     difficulty: {
       type: String,
       required: [true, 'Tour difficulty is required'],
+      enum: {
+        values: ['easy', 'medium', 'difficult'],
+        message: 'Difficulty must be either easy, medium or difficult',
+      },
     },
     price: {
       type: Number,
       required: [true, 'Tour price is required'],
     },
-    priceDiscount: Number,
+    priceDiscount: {
+      type: Number,
+      validate: {
+        validator: function (val) {
+          return val < this.price;
+        },
+        message: 'The value ({VALUE}) is greater than the actual price',
+      },
+    },
     summary: {
       type: String,
       trim: true,
@@ -47,7 +62,6 @@ const tourSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Tour image cover is required'],
     },
-    images: [String],
     createdAt: {
       type: Date,
       default: Date.now(),
@@ -61,16 +75,18 @@ const tourSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    images: [String],
+    slug: String,
   },
 
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
 );
 
 tourSchema.virtual('durationWeeks').get(function () {
-  return this.duration / 7;
+  return Math.round(this.duration / 7);
 });
 
 tourSchema.pre('save', function (next) {
@@ -93,6 +109,8 @@ tourSchema.pre('aggregate', function (next) {
   console.log(this._pipeline);
   next();
 });
+
+console.log('A');
 
 const Tour = mongoose.model('Tour', tourSchema);
 
