@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
+const AppError = require('./utils/appError');
+const golbalErrorHandler = require('./controllers/errorController');
 
 const app = express();
 
@@ -13,5 +15,11 @@ app.use((req, res, next) => {
 });
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
+
+app.all('*', (req, res, next) => {
+  next(new AppError(`Cannot find this route ${req.originalUrl}`, 404));
+});
+
+app.use(golbalErrorHandler);
 
 module.exports = app;
