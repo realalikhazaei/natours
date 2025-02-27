@@ -7,10 +7,12 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "start:prod": "$env:NODE_ENV = 'production'; nodemon server.js"
+    "start": "cross-env NODE_ENV=development nodemon server.js",
+    "start:prod": "cross-env NODE_ENV=production nodemon server.js",
+    "debug": "cross-env ndb server.js"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^5.13.23",

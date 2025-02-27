@@ -1,9 +1,15 @@
 const dotenv = require('dotenv');
-dotenv.config({ path: './config.env' });
 const mongoose = require('mongoose');
 
-const app = require('./app');
+process.on('uncaughtException', err => {
+  console.log('UNCAUGHT EXCEPTION 💥💥 Shutting down...');
+  console.log(err);
+  process.exit(1);
+  // server.close(() => process.exit(1));
+});
 
+dotenv.config({ path: './config.env' });
+const app = require('./app');
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.PASSWORD);
 
 mongoose
@@ -13,9 +19,14 @@ mongoose
     useUnifiedTopology: true,
     useFindAndModify: false,
   })
-  .then(() => console.log('Connection to database has been established'))
-  .catch(err => console.log(err));
+  .then(() => console.log('Connection to database has been established'));
 
-app.listen(process.env.PORT, process.env.HOST, () => {
+const server = app.listen(process.env.PORT, process.env.HOST, () => {
   console.log(`Starting the API service on port ${process.env.PORT}...`);
+});
+
+process.on('unhandledRejection', err => {
+  console.log('UNHANDLED REJECTION 💥💥 Shutting down...');
+  console.log(err);
+  server.close(() => process.exit(1));
 });

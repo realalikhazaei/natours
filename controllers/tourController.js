@@ -1,6 +1,7 @@
 const Tour = require('./../models/tourModel');
 const APIFeatures = require('./../utils/apiFeatures');
 const catchAsync = require('./../utils/catchAsync');
+const AppError = require('./../utils/appError');
 
 const topTours = (req, res, next) => {
   req.query.limit = '5';
@@ -9,7 +10,7 @@ const topTours = (req, res, next) => {
   next();
 };
 
-const getAllTours = catchAsync(async (req, res) => {
+const getAllTours = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Tour.find(), req.query).filter().sort().projection().pagination();
   const tours = await features.query;
 
@@ -20,17 +21,18 @@ const getAllTours = catchAsync(async (req, res) => {
   });
 });
 
-const createTour = catchAsync(async (req, res) => {
+const createTour = catchAsync(async (req, res, next) => {
   const newTour = await Tour.create(req.body);
-
   res.status(201).json({
     status: 'success',
     data: newTour,
   });
 });
 
-const getTour = catchAsync(async (req, res) => {
+const getTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.params.id);
+  // if (!tour) throw new AppError(`There is no such tour with this ID: ${req.params.id}`, 404);
+  if (!tour) return next(new AppError(`There is no such tour with this ID: ${req.params.id}`, 404));
 
   res.status(200).json({
     status: 'success',
@@ -38,7 +40,7 @@ const getTour = catchAsync(async (req, res) => {
   });
 });
 
-const updateTour = catchAsync(async (req, res) => {
+const updateTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
 
   res.status(200).json({
@@ -47,9 +49,10 @@ const updateTour = catchAsync(async (req, res) => {
   });
 });
 
-const deleteTour = catchAsync(async (req, res) => {
+const deleteTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findByIdAndDelete(req.params.id);
-  if (!tour) throw new Error('There is no such tour with this ID');
+  // if (!tour) throw new AppError(`There is no such tour with this ID: ${req.params.id}`, 404);
+  if (!tour) return next(new AppError(`There is no such tour with this ID: ${req.params.id}`, 404));
 
   res.status(200).json({
     status: 'success',
@@ -57,7 +60,7 @@ const deleteTour = catchAsync(async (req, res) => {
   });
 });
 
-const tourStats = catchAsync(async (req, res) => {
+const tourStats = catchAsync(async (req, res, next) => {
   const aggregate = Tour.aggregate([
     {
       $match: { ratingsAverage: { $gte: 4.5 } },
@@ -80,7 +83,7 @@ const tourStats = catchAsync(async (req, res) => {
   });
 });
 
-const monthlyPlan = catchAsync(async (req, res) => {
+const monthlyPlan = catchAsync(async (req, res, next) => {
   const year = req.params.year;
   const plan = await Tour.aggregate([
     {

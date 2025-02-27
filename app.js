@@ -19,7 +19,6 @@ app.use('/api/v1/users', userRouter);
 app.all('*', (req, res, next) => {
   next(new AppError(`Cannot find this route ${req.originalUrl}`, 404));
 });
-
 app.use(golbalErrorHandler);
 
 module.exports = app;
