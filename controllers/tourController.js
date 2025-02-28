@@ -31,7 +31,6 @@ const createTour = catchAsync(async (req, res, next) => {
 
 const getTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.params.id);
-  // if (!tour) throw new AppError(`There is no such tour with this ID: ${req.params.id}`, 404);
   if (!tour) return next(new AppError(`There is no such tour with this ID: ${req.params.id}`, 404));
 
   res.status(200).json({
@@ -51,7 +50,6 @@ const updateTour = catchAsync(async (req, res, next) => {
 
 const deleteTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findByIdAndDelete(req.params.id);
-  // if (!tour) throw new AppError(`There is no such tour with this ID: ${req.params.id}`, 404);
   if (!tour) return next(new AppError(`There is no such tour with this ID: ${req.params.id}`, 404));
 
   res.status(200).json({

@@ -1,4 +1,4 @@
-const AppError = require('./../utils/appError');
+const AppError = require('../utils/appError');
 
 const devErr = (err, res) => {
   res.status(err.statusCode).json({
@@ -28,7 +28,7 @@ const handleCastErrorDB = err => {
   return new AppError(message, 400);
 };
 
-const handleDuplicateErrorDB = err => {
+const handleDuplicateNameDB = err => {
   const message = `The name '${err.keyValue.name}' already exists`;
   return new AppError(message, 400);
 };
@@ -45,11 +45,14 @@ const globalErrorHandler = (err, req, res, next) => {
   err.status ||= 'error';
 
   if (process.env.NODE_ENV === 'development') devErr(err, res);
+
   if (process.env.NODE_ENV === 'production') {
     let error = { ...err };
+
     if (err.name === 'CastError') error = handleCastErrorDB(err);
-    if (err.code === 11000) error = handleDuplicateErrorDB(err);
+    if (err.code === 11000) error = handleDuplicateNameDB(err);
     if (err.name === 'ValidationError') error = handleValidationErrorDB(err);
+
     prodErr(error, res);
   }
 };

@@ -1,0 +1,25 @@
+import globals from 'globals';
+import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
+// import pluginJs from "@eslint/js";
+
+/** @type {import('eslint').Linter.Config[]} */
+export default [
+  { files: ['**/*.js'], languageOptions: { sourceType: 'commonjs' } },
+  { languageOptions: { globals: globals.node } },
+  eslintPluginPrettier,
+  {
+    rules: {
+      'prettier/prettier': 'off',
+      'no-console': 'warn',
+      'no-eval': 'error',
+      'no-implied-eval': 'warn',
+      'no-var': 'error',
+      'no-undef': 'off',
+      'no-unused-vars': 'off',
+      'consistent-return': 'off',
+      'no-process-exit': 'off',
+      'no-param-reassign': 'off',
+    },
+  },
+  // pluginJs.configs.recommended,
+];

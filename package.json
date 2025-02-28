@@ -9,7 +9,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon server.js",
     "start:prod": "cross-env NODE_ENV=production nodemon server.js",
-    "debug": "cross-env ndb server.js"
+    "debug": "cross-env ndb server.js",
+    "lint": "cross-env eslint"
   },
   "dependencies": {
     "cross-env": "^7.0.3",
@@ -20,6 +21,12 @@
     "slugify": "^1.6.6"
   },
   "devDependencies": {
-    "ndb": "^1.1.5"
+    "@eslint/js": "^9.21.0",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "globals": "^16.0.0",
+    "ndb": "^1.1.5",
+    "prettier": "^3.5.2"
   }
 }

@@ -106,7 +106,6 @@ tourSchema.pre('findOne', function (next) {
 
 tourSchema.pre('aggregate', function (next) {
   this._pipeline.unshift({ $match: { secretTour: { $ne: true } } });
-  console.log(this._pipeline);
   next();
 });
 
