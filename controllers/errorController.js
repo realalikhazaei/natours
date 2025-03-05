@@ -28,16 +28,15 @@ const handleCastErrorDB = err => {
   return new AppError(message, 400);
 };
 
-const handleDuplicateNameDB = err => {
-  const message = `The name '${err.keyValue.name}' already exists`;
-  return new AppError(message, 400);
-};
-
 const handleValidationErrorDB = err => {
   const errors = Object.values(err.errors)
     .map(el => el.message)
     .join('. ');
   return new AppError(errors, 400);
+};
+
+const handleDupNameDB = err => {
+  return new AppError(err.message, 400);
 };
 
 const globalErrorHandler = (err, req, res, next) => {
@@ -50,8 +49,8 @@ const globalErrorHandler = (err, req, res, next) => {
     let error = { ...err };
 
     if (err.name === 'CastError') error = handleCastErrorDB(err);
-    if (err.code === 11000) error = handleDuplicateNameDB(err);
     if (err.name === 'ValidationError') error = handleValidationErrorDB(err);
+    if (err.stack.startsWith('MongooseError')) error = handleDupNameDB(err);
 
     prodErr(error, res);
   }

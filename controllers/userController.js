@@ -1,49 +1,52 @@
-const checkID = (req, res, next, val) => {
-  if (val > tours.length - 1)
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid ID',
-    });
-  next();
-};
+const User = require('./../models/userModel');
+const catchAsync = require('./../utils/catchAsync');
 
-const getAllUsers = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!',
-  });
-};
+const getAllUsers = catchAsync(async (req, res, next) => {
+  const users = await User.find();
 
-const createUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!',
+  res.status(200).json({
+    status: 'success',
+    data: users,
   });
-};
+});
 
-const getUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!',
-  });
-};
+const createUser = catchAsync(async (req, res, next) => {
+  const user = await User.create(req.body);
 
-const updateUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!',
+  res.status(201).json({
+    status: 'success',
+    data: user,
   });
-};
+});
 
-const deleteUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!',
+const getUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  res.status(200).json({
+    status: 'success',
+    data: user,
   });
-};
+});
+
+const updateUser = catchAsync(async (req, res, next) => {
+  const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+
+  res.status(200).json({
+    status: 'success',
+    data: user,
+  });
+});
+
+const deleteUser = catchAsync(async (req, res, next) => {
+  const user = await User.findByIdAndDelete(req.params.id);
+
+  res.status(204).json({
+    status: 'success',
+    data: null,
+  });
+});
 
 module.exports = {
-  checkID,
   getAllUsers,
   createUser,
   getUser,
