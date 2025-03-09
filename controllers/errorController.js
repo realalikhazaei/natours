@@ -35,9 +35,11 @@ const handleValidationErrorDB = err => {
   return new AppError(errors, 400);
 };
 
-const handleDupNameDB = err => {
-  return new AppError(err.message, 400);
-};
+const handleDupNameDB = err => new AppError(err.message, 400);
+
+const handleInvalidJWT = () => new AppError('Your token is invalid. Please login again.', 401);
+
+const handleExpiredJWT = () => new AppError('Your token is expired. Please login again.', 401);
 
 const globalErrorHandler = (err, req, res, next) => {
   err.statusCode ||= 500;
@@ -51,6 +53,8 @@ const globalErrorHandler = (err, req, res, next) => {
     if (err.name === 'CastError') error = handleCastErrorDB(err);
     if (err.name === 'ValidationError') error = handleValidationErrorDB(err);
     if (err.stack.startsWith('MongooseError')) error = handleDupNameDB(err);
+    if (err.name === 'JsonWebTokenError') error = handleInvalidJWT();
+    if (err.name === 'TokenExpiredError') error = handleExpiredJWT();
 
     prodErr(error, res);
   }

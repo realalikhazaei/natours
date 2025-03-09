@@ -5,20 +5,20 @@ const bcrypt = require('bcryptjs');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please provide your name'],
+    required: [true, 'Please provide your full name'],
     trim: true,
   },
   email: {
     type: String,
     required: [true, 'Please provide your email address'],
-    unique: [true, 'This email address already exists'],
-    validate: [isEmail, 'Please provide a valid email address'],
+    unique: [true, 'This email already exists'],
+    validate: [isEmail, 'The email format is not valid'],
     lowercase: true,
   },
   password: {
     type: String,
     required: [true, 'Please provide a password'],
-    minlength: 8,
+    minlength: [8, 'Password must be at least 8 characters'],
     select: false,
   },
   passwordConfirm: {
@@ -28,9 +28,10 @@ const userSchema = new mongoose.Schema({
       validator: function (val) {
         return val === this.password;
       },
-      message: "Passwords don't match",
+      message: "Your passwords doesn't match",
     },
   },
+  passwordLastModify: Date,
 });
 
 userSchema.pre('save', async function (next) {
@@ -39,12 +40,15 @@ userSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, 12);
 
   this.passwordConfirm = undefined;
-
   next();
 });
 
-userSchema.methods.comparePasswords = async function (candidatPassword, databaseHash) {
-  return await bcrypt.compare(candidatPassword, databaseHash);
+userSchema.methods.comparePasswords = async function (candidatePass, hashPass) {
+  return await bcrypt.compare(candidatePass, hashPass);
+};
+
+userSchema.methods.passwordChangedAfter = function (jwtIssuedTime) {
+  return this.passwordLastModify / 1000 > jwtIssuedTime;
 };
 
 const User = mongoose.model('User', userSchema);

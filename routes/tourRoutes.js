@@ -8,11 +8,12 @@ const {
   deleteTour,
   tourStats,
   monthlyPlan,
-} = require('../controllers/tourController');
+} = require('./../controllers/tourController');
+const { protectRoute } = require('./../controllers/authController');
 
 const router = express.Router();
 
-router.route('/').get(getAllTours).post(createTour);
+router.route('/').get(protectRoute, getAllTours).post(createTour);
 router.route('/tour-stats').get(tourStats);
 router.route('/top-5-tours').get(topTours, getAllTours);
 router.route('/monthly-plan/:year').get(monthlyPlan);
