@@ -52,7 +52,7 @@ const deleteTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findByIdAndDelete(req.params.id);
   if (!tour) return next(new AppError(`There is no such tour with this ID: ${req.params.id}`, 404));
 
-  res.status(200).json({
+  res.status(204).json({
     status: 'success',
     data: null,
   });

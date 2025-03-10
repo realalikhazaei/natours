@@ -9,8 +9,9 @@ const signToken = id => {
 };
 
 const signUp = catchAsync(async (req, res, next) => {
-  const { name, email, password, passwordConfirm } = req.body;
-  const newUser = await User.create({ name, email, password, passwordConfirm });
+  // const { name, email, password, passwordConfirm } = req.body;
+  // const newUser = await User.create({ name, email, password, passwordConfirm });
+  const newUser = await User.create(req.body);
   const token = signToken(newUser._id);
 
   res.status(200).json({
@@ -19,6 +20,7 @@ const signUp = catchAsync(async (req, res, next) => {
     data: {
       name: newUser.name,
       email: newUser.email,
+      role: newUser.role,
     },
   });
 });
@@ -33,8 +35,6 @@ const login = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email }).select('+password');
   if (!user || !(await user.comparePasswords(password, user.password)))
     return next(new AppError('There is no user with this email and password', 401));
-  // const correct = await user.comparePasswords(password, user.password);
-  // if (!user || !correct) return next(new AppError('There is no user with this email and password', 401));
 
   //3. If everything is OK, sign a token and send as a response
   const token = signToken(user._id);
@@ -67,4 +67,28 @@ const protectRoute = catchAsync(async (req, res, next) => {
   next();
 });
 
-module.exports = { signUp, login, protectRoute };
+const restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role))
+      return next(new AppError("You don't have permission to perform this action", 403));
+    next();
+  };
+};
+
+const forgotPassword = catchAsync(async (req, res, next) => {
+  //1. Find user by email
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) return next(new AppError('There is no user with this email', 400));
+
+  //2. Generate a reset password token
+  const resetToken = user.createPasswordResetToken();
+  await user.save({ validateBeforeSave: false });
+
+  //3. Send the token to user's email
+  res.status(200).json({
+    status: 'success',
+    resetToken,
+  });
+});
+
+module.exports = { signUp, login, protectRoute, restrictTo, forgotPassword };
