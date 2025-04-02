@@ -37,4 +37,10 @@ const deleteMe = catchAsync(async (req, res, next) => {
   });
 });
 
-module.exports = { getAllUsers, createUser, getUser, updateUser, deleteUser, updateMe, deleteMe };
+//Set the current user ID
+const setMyId = (req, res, next) => {
+  req.params.id = req.user._id;
+  next();
+};
+
+module.exports = { getAllUsers, createUser, getUser, updateUser, deleteUser, updateMe, deleteMe, setMyId };

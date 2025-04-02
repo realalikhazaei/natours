@@ -67,7 +67,7 @@ const tourSchema = new mongoose.Schema(
     slug: String,
     secretTour: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     startLocation: {
       description: String,
@@ -91,7 +91,12 @@ const tourSchema = new mongoose.Schema(
         day: Number,
       },
     ],
-    guides: Array,
+    guides: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+      },
+    ],
   },
   {
     toJSON: { virtuals: true },
@@ -99,6 +104,18 @@ const tourSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+//Compound index for price and ratingsAverage fields
+tourSchema.index({ price: 1, ratingsAverage: -1 });
+
+//Single index for slug field
+tourSchema.index({ slug: 1 });
+
+//Geospatial index for startLocation
+tourSchema.index({ startLocation: '2dsphere' });
+
+//Virtual reference for reviews
+tourSchema.virtual('reviews', { ref: 'Review', foreignField: 'tour', localField: '_id' });
 
 //Create tour slug
 tourSchema.pre('save', function (next) {
@@ -109,6 +126,18 @@ tourSchema.pre('save', function (next) {
 //Filter out secret tours
 tourSchema.pre(/^find/, function (next) {
   this.find({ secretTour: { $ne: true } });
+  next();
+});
+
+//Populate guides data
+tourSchema.pre(/^find/, function (next) {
+  this.populate({ path: 'guides', select: 'name role' });
+  next();
+});
+
+//Populate reviews data
+tourSchema.pre(/^find/, function (next) {
+  this.populate({ path: 'reviews', select: 'review rating user' });
   next();
 });
 

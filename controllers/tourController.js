@@ -1,6 +1,17 @@
 const Tour = require('./../models/tourModel');
 const factory = require('./handlerFactory');
 const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
+
+const getAllTours = factory.getAll(Tour);
+
+const createTour = factory.createOne(Tour);
+
+const getTour = factory.getOne(Tour);
+
+const updateTour = factory.updateOne(Tour);
+
+const deleteTour = factory.deleteOne(Tour);
 
 const top5Tours = (req, res, next) => {
   req.query.sort = '-ratingsAverage,price';
@@ -72,14 +83,62 @@ const monthlyPlan = catchAsync(async (req, res, next) => {
   });
 });
 
-const getAllTours = factory.getAll(Tour);
+const getToursWithin = catchAsync(async (req, res, next) => {
+  const { distance = 150, latlng, unit = 'km' } = req.query;
+  if (!latlng) return next(new AppError('Please allow for accessing your location and try again', 400));
+  const [lat, lng] = latlng.split(',');
+  const radian = unit === 'km' ? distance / 6378.1 : distance / 3963.2;
 
-const createTour = factory.createOne(Tour);
+  const tours = await Tour.find({ startLocation: { $geoWithin: { $centerSphere: [[+lng, +lat], radian] } } });
 
-const getTour = factory.getOne(Tour);
+  res.status(200).json({
+    status: 'success',
+    results: tours.length,
+    data: tours,
+  });
+});
 
-const updateTour = factory.updateOne(Tour);
+const getToursDistances = catchAsync(async (req, res, next) => {
+  const { latlng, unit = 'km' } = req.query;
+  if (!latlng) return next(new AppError('Please allow for accessing your location and try again', 400));
+  const [lat, lng] = latlng.split(',');
+  const distanceField = `distance (${unit})`;
+  const distanceMultiplier = unit === 'km' ? 0.001 : 0.000621371;
 
-const deleteTour = factory.deleteOne(Tour);
+  const distances = await Tour.aggregate([
+    {
+      $geoNear: {
+        near: {
+          type: 'Point',
+          coordinates: [+lng, +lat],
+        },
+        distanceField,
+        distanceMultiplier,
+      },
+    },
+    {
+      $project: {
+        name: 1,
+        [distanceField]: 1,
+      },
+    },
+  ]);
 
-module.exports = { getAllTours, createTour, getTour, updateTour, deleteTour, top5Tours, toursStats, monthlyPlan };
+  res.status(200).json({
+    status: 'success',
+    data: distances,
+  });
+});
+
+module.exports = {
+  getAllTours,
+  createTour,
+  getTour,
+  updateTour,
+  deleteTour,
+  top5Tours,
+  toursStats,
+  monthlyPlan,
+  getToursWithin,
+  getToursDistances,
+};

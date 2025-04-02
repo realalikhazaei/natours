@@ -7,6 +7,7 @@ const {
   deleteUser,
   updateMe,
   deleteMe,
+  setMyId,
 } = require('./../controllers/userController');
 const {
   signUp,
@@ -27,6 +28,7 @@ router.patch('/reset-password/:token', resetPassword);
 
 router.use(protectRoute);
 
+router.get('/my-profile', setMyId, getUser);
 router.patch('/update-password', updatePassword);
 router.patch('/update-my-info', updateMe);
 router.delete('/delete-my-account', deleteMe);

@@ -4,8 +4,10 @@ const AppError = require('../utils/appError');
 
 exports.getAll = Model =>
   catchAsync(async (req, res, next) => {
-    console.log(req.query);
-    const features = new APIFeatures(Model.find(), req.query).filter().sort().project().pagination();
+    let filter;
+    if (req.params.tourID) filter = { tour: req.params.tourID };
+
+    const features = new APIFeatures(Model.find(filter), req.query).filter().sort().project().pagination();
     const documents = await features.query;
 
     res.status(200).json({

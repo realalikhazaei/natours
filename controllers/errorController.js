@@ -50,6 +50,9 @@ const expiredJWTErr = () => new AppError('Your login session has expired. Please
 //Invalid JWT token error
 const invalidJWTErr = () => new AppError('Your login session has gone wrong. Please login again', 401);
 
+//Maximum review error
+const maxReviewErr = () => new AppError('You can only write one review for each single tour', 400);
+
 //Global error handler
 const globalErrorHandler = (err, req, res, next) => {
   err.status ||= 'error';
@@ -63,6 +66,7 @@ const globalErrorHandler = (err, req, res, next) => {
     if (err.stack.startsWith('MongooseError')) error = dupUniqueErrDB(err);
     if (err.name === 'TokenExpiredError') error = expiredJWTErr();
     if (err.name === 'JsonWebTokenError') error = invalidJWTErr();
+    if (err.code === 11000) error = maxReviewErr();
 
     prodErr(error, res);
   }
