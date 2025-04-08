@@ -131,7 +131,7 @@ tourSchema.pre(/^find/, function (next) {
 
 //Populate guides data
 tourSchema.pre(/^find/, function (next) {
-  this.populate({ path: 'guides', select: 'name role' });
+  this.populate({ path: 'guides', select: 'name role photo' });
   next();
 });
 
