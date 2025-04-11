@@ -4,6 +4,7 @@ const AppError = require('./utils/appError');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
+const viewRouter = require('./routes/viewRoutes');
 const globalErrorHandler = require('./controllers/errorController');
 const rateLimit = require('express-rate-limit');
 const sanitize = require('express-mongo-sanitize');
@@ -31,6 +32,13 @@ app.use((req, res, next) => {
   next();
 });
 
+//Static file serve
+app.use(express.static('public'));
+
+//Template engine
+app.set('view engine', 'pug');
+app.set('views', 'views');
+
 //Data sanitize
 app.use(sanitize());
 
@@ -44,6 +52,7 @@ app.use(hpp({ whitelist: ['duration', 'price', 'difficulty'] }));
 app.use(httpClean);
 
 //Routers
+app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
