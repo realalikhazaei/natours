@@ -64,8 +64,7 @@ block content
       img.picture-box__img.picture-box__img--3(src='/img/tour-5-3.jpg' alt='The Park Camper Tour 1')
 
   section.section-map
-    #map(data-location=`${JSON.stringify(tour.locations)}`)
-    script(src='/js/map.js')
+    #map(data-locations=`${JSON.stringify(tour.locations)}`)
 
   section.section-reviews
     .reviews
