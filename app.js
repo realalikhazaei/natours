@@ -43,7 +43,17 @@ app.set('views', 'views');
 app.use(sanitize());
 
 //Set special HTTP headers
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", 'https://cdnjs.cloudflare.com'],
+        imgSrc: ["'self'", 'https://tile.openstreetmap.org', 'https://cdnjs.cloudflare.com'],
+      },
+    },
+  }),
+);
 
 //Avoid parameter pollution
 app.use(hpp({ whitelist: ['duration', 'price', 'difficulty'] }));
