@@ -27,4 +27,10 @@ const getLoginPage = (req, res) => {
   });
 };
 
-module.exports = { getOverviewPage, getTourPage, getLoginPage };
+const getProfilePage = (req, res) => {
+  res.status(200).render('profile', {
+    title: 'User Panel',
+  });
+};
+
+module.exports = { getOverviewPage, getTourPage, getLoginPage, getProfilePage };

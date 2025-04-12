@@ -44,14 +44,16 @@ const login = catchAsync(async (req, res, next) => {
   const correct = await user?.comparePasswords(password);
   if (!user || !correct) return next(new AppError('There is no account with this email and password', 404));
 
-  signSendToken(user._id, res, 'You have logged in successfully');
+  signSendToken(user._id, res, 'You have been logged in successfully');
 });
 
 const protectRoute = catchAsync(async (req, res, next) => {
-  const auth = req.headers?.authorization;
+  const bearerAuth = req.headers?.authorization;
+  const cookieAuth = req.cookies?.jwt;
   let token;
-  if (auth && auth.startsWith('Bearer ')) token = auth.split(' ')[1];
-  if (!token) return next(new AppError('You must login first to access this page', 401));
+  if (bearerAuth && bearerAuth.startsWith('Bearer ')) token = bearerAuth.split(' ')[1];
+  if (cookieAuth) token = cookieAuth;
+  if (!token || token === 'loggedout') return next(new AppError('You must login first to access this page', 401));
 
   const payload = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
@@ -62,6 +64,7 @@ const protectRoute = catchAsync(async (req, res, next) => {
   if (passwordChanged) return next(new AppError('Your password has been changed. Please login again', 401));
 
   req.user = user;
+  res.locals.user = user;
   next();
 });
 
@@ -138,8 +141,7 @@ const updatePassword = catchAsync(async (req, res, next) => {
 
 const isLoggedIn = async (req, res, next) => {
   const token = req.cookies?.jwt;
-  console.log(token);
-  if (!token) return next();
+  if (!token || token === 'loggedout') return next();
 
   const payload = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
@@ -154,4 +156,23 @@ const isLoggedIn = async (req, res, next) => {
   next();
 };
 
-module.exports = { signUp, login, protectRoute, restrictTo, forgotPassword, resetPassword, updatePassword, isLoggedIn };
+const logout = (req, res) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10000),
+    httpOnly: true,
+    secure: true,
+  });
+  res.status(200).json({ status: 'success', message: 'You have been logged out successfully' });
+};
+
+module.exports = {
+  signUp,
+  login,
+  protectRoute,
+  restrictTo,
+  forgotPassword,
+  resetPassword,
+  updatePassword,
+  isLoggedIn,
+  logout,
+};

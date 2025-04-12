@@ -1,25 +1,46 @@
 const AppError = require('./../utils/appError');
 
 //Development error response
-const devErr = (err, res) => {
-  res.status(err.statusCode).json({
-    status: err.status,
-    message: err.message,
-    error: err,
-    stack: err.stack,
+const devErr = (err, req, res) => {
+  if (req.originalUrl.startsWith('/api')) {
+    res.status(err.statusCode).json({
+      status: err.status,
+      message: err.message,
+      error: err,
+      stack: err.stack,
+    });
+  }
+
+  res.status(err.statusCode).render('error', {
+    title: 'Something went wrong',
+    message: err,
   });
 };
 
 //Production error response
-const prodErr = (err, res) => {
+const prodErr = (err, req, res) => {
+  if (req.originalUrl.startsWith('/api')) {
+    if (err.isOperational) {
+      res.status(err.statusCode).json({
+        status: err.status,
+        message: err.message,
+      });
+    } else {
+      res.status(500).json({
+        status: 'error',
+        message: 'Something went wrong',
+      });
+    }
+  }
+
   if (err.isOperational) {
-    res.status(err.statusCode).json({
-      status: err.status,
+    res.status(err.statusCode).render('error', {
+      title: 'Something went wrong',
       message: err.message,
     });
   } else {
-    res.status(500).json({
-      status: 'error',
+    res.status(500).render('error', {
+      title: 'Something went wrong',
       message: 'Something went wrong',
     });
   }
@@ -58,7 +79,7 @@ const globalErrorHandler = (err, req, res, next) => {
   err.status ||= 'error';
   err.statusCode ||= 500;
 
-  if (process.env.NODE_ENV === 'development') devErr(err, res);
+  if (process.env.NODE_ENV === 'development') devErr(err, req, res);
   if (process.env.NODE_ENV === 'production') {
     let error = { ...err };
     if (err.name === 'CastError') error = invalidIdErrDB(err);
@@ -68,7 +89,7 @@ const globalErrorHandler = (err, req, res, next) => {
     if (err.name === 'JsonWebTokenError') error = invalidJWTErr();
     if (err.code === 11000) error = maxReviewErr();
 
-    prodErr(error, res);
+    prodErr(error, req, res);
   }
 };
 

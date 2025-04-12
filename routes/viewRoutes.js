@@ -1,8 +1,10 @@
 const express = require('express');
-const { getOverviewPage, getTourPage, getLoginPage } = require('./../controllers/viewController');
-const { isLoggedIn } = require('./../controllers/authController');
+const { getOverviewPage, getTourPage, getLoginPage, getProfilePage } = require('./../controllers/viewController');
+const { protectRoute, isLoggedIn } = require('./../controllers/authController');
 
 const router = express.Router();
+
+router.get('/my-profile', protectRoute, getProfilePage);
 
 router.use(isLoggedIn);
 
