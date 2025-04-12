@@ -136,4 +136,22 @@ const updatePassword = catchAsync(async (req, res, next) => {
   signSendToken(user._id, res, 'Your password has been changed successfully');
 });
 
-module.exports = { signUp, login, protectRoute, restrictTo, forgotPassword, resetPassword, updatePassword };
+const isLoggedIn = async (req, res, next) => {
+  const token = req.cookies?.jwt;
+  console.log(token);
+  if (!token) return next();
+
+  const payload = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+  const user = await User.findById(payload.id);
+  if (!user) return next();
+
+  const passwordChanged = user.passwordChangedAfter(payload.iat);
+  if (passwordChanged) return next();
+
+  req.user = user;
+  res.locals.user = user;
+  next();
+};
+
+module.exports = { signUp, login, protectRoute, restrictTo, forgotPassword, resetPassword, updatePassword, isLoggedIn };

@@ -10,6 +10,12 @@ mixin overviewBox(icon, text, date)
     span.overview-box__label= text
     span.overview-box__text= date
 
+mixin reviewStars(rating)
+  -for (let i = 0; i < rating; i++)
+    svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
+  -for (let i = 5; i > rating; i--)
+    svg.reviews__star.reviews__star--inactive: use(xlink:href='/img/icons.svg#icon-star')
+
 block content
   section.section-header
     .header__hero
@@ -17,7 +23,7 @@ block content
       img.header__hero-img(src=`/img/tours/${tour.imageCover}` alt=`${tour.name}`)
     .heading-box
       h1.heading-primary
-        span= tour.name
+        span= `${tour.name} tour`
       .heading-box__group
         .heading-box__detail
           svg.heading-box__icon: use(xlink:href='/img/icons.svg#icon-clock')
@@ -47,90 +53,37 @@ block content
               span.overview-box__text= guide.name
 
     .description-box
-      h2.heading-secondary.ma-bt-lg About the park camper tour
-      p.description__text Lorem ipsum
-      p.description__text Duis aute
+      h2.heading-secondary.ma-bt-lg= `About ${tour.name} tour`
+      -const description = tour.description.split('\n');
+      for paragraph in description
+        p.description__text= paragraph
 
   section.section-pictures
-    .picture-box
-      img.picture-box__img.picture-box__img--1(src='/img/tours/tour-5-1.jpg' alt='The Park Camper Tour 1')
-    .picture-box
-      img.picture-box__img.picture-box__img--2(src='/img/tours/tour-5-2.jpg' alt='The Park Camper Tour 1')
-    .picture-box
-      img.picture-box__img.picture-box__img--3(src='/img/tours/tour-5-3.jpg' alt='The Park Camper Tour 1')
+    for image, index in tour.images
+      .picture-box
+        img(class=`picture-box__img picture-box__img--${index + 1}` src=`/img/tours/${image}` alt=`${tour.name} Tour ${index + 1}`)
 
   section.section-map
     #map(data-locations=`${JSON.stringify(tour.locations)}`)
 
   section.section-reviews
     .reviews
-      .reviews__card
-        .reviews__avatar
-          img.reviews__avatar-img(src='/img/users/user-7.jpg' alt='Jim Brown')
-          h6.reviews__user Jim Brown
-        p.reviews__text Lorem ipsum
-        .reviews__rating
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-
-      .reviews__card
-        .reviews__avatar
-          img.reviews__avatar-img(src='/img/users/user-14.jpg' alt='Laura Wilson')
-          h6.reviews__user Laura Wilson
-        p.reviews__text Lorem ipsum
-        .reviews__rating
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-
-      .reviews__card
-        .reviews__avatar
-          img.reviews__avatar-img(src='/img/users/user-15.jpg' alt='Ben Hadley')
-          h6.reviews__user Ben Hadley
-        p.reviews__text Lorem ipsum
-        .reviews__rating
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-
-      .reviews__card
-        .reviews__avatar
-          img.reviews__avatar-img(src='/img/users/user-6.jpg' alt='Alexander Jones')
-          h6.reviews__user Alexander Jones
-        p.reviews__text Lorem ipsum
-        .reviews__rating
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-
-      .reviews__card
-        .reviews__avatar
-          img.reviews__avatar-img(src='/img/users/user-3.jpg' alt='Ayla Cornell')
-          h6.reviews__user Ayla Cornell
-        p.reviews__text Lorem ipsum
-        .reviews__rating
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
-          svg.reviews__star.reviews__star--active: use(xlink:href='/img/icons.svg#icon-star')
+      for review in tour.reviews
+        .reviews__card
+          .reviews__avatar
+            img.reviews__avatar-img(src=`/img/users/${review.user.photo}` alt=`${review.user.name}`)
+            h6.reviews__user= review.user.name
+          p.reviews__text= review.review
+          .reviews__rating
+            +reviewStars(review.rating)
 
   section.section-cta
     .cta
       .cta__img.cta__img--logo
         img(src='/img/logo-white.png' alt='Natours logo')
-      img.cta__img.cta__img--1(src='/img/tour-5-2.jpg' alt='')
-      img.cta__img.cta__img--2(src='/img/tour-5-1.jpg' alt='')
+      img.cta__img.cta__img--1(src=`/img/tours/${tour.images[1]}` alt=`${tour.name}`)
+      img.cta__img.cta__img--2(src=`/img/tours/${tour.images[0]}` alt=`${tour.name}`)
       .cta__content
         h2.heading-secondary What are you waiting for?
-        p.cta__text 10 days. 1 adventure. Infinite memories. Make it yours today!
+        p.cta__text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
         button.btn.btn--green.span-all-rows Book tour now!

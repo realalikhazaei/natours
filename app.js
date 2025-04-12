@@ -11,6 +11,7 @@ const sanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const hpp = require('hpp');
 const httpClean = require('./utils/httpClean');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -31,6 +32,9 @@ app.use((req, res, next) => {
   ['role', 'passwordChangedAt', 'passwordResetToken', 'passwordResetExpires'].forEach(el => delete req.body?.[el]);
   next();
 });
+
+//Cookie-parser
+app.use(cookieParser());
 
 //Static file serve
 app.use(express.static('public'));

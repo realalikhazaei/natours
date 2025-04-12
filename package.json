@@ -5,24 +5,28 @@
   "license": "ISC",
   "author": "Ali",
   "type": "commonjs",
-  "main": "server.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon server.js",
     "start:prod": "cross-env NODE_ENV=production nodemon server.js",
     "lint": "cross-env eslint",
-    "debug": "ndb server.js"
+    "debug": "ndb server.js",
+    "parcel": "parcel watch ./public/js/index.js --dist-dir ./public/js/bundle"
   },
   "devDependencies": {
+    "buffer": "^6.0.3",
     "cross-env": "^7.0.3",
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.5",
     "globals": "^16.0.0",
     "nodemon": "^3.1.9",
+    "parcel": "^2.14.4",
     "prettier": "^3.5.3"
   },
   "dependencies": {
+    "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-mongo-sanitize": "^2.2.0",
