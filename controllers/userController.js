@@ -2,7 +2,7 @@ const User = require('./../models/userModel');
 const factory = require('./handlerFactory');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
-const multer = require('multer');
+const multerUpload = require('./../utils/multerUpload');
 const sharp = require('sharp');
 
 const getAllUsers = factory.getAll(User);
@@ -47,41 +47,20 @@ const setMyId = (req, res, next) => {
 };
 
 //Multer configurations
-/* const multerStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'public/img/users');
-  },
-  filename: (req, file, cb) => {
-    const extension = file.mimetype.split('/')[1];
-    cb(null, `user-${req.user._id}-${Date.now()}.${extension}`);
-  },
-}); */
-const multerStorage = multer.memoryStorage();
-const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')) {
-    cb(null, true);
-  } else {
-    cb(new AppError('Invalid file type! Please only provide images', 400), false);
-  }
-};
-const upload = multer({
-  storage: multerStorage,
-  fileFilter: multerFilter,
-});
-const uploadUserPhoto = upload.single('photo');
-const processUserPhoto = (req, res, next) => {
+const uploadUserPhoto = multerUpload.single('photo');
+const processUserPhoto = catchAsync(async (req, res, next) => {
   if (!req.file) return next();
   const extension = req.file.mimetype.split('/')[1];
   req.file.filename = `user-${req.user._id}-${Date.now()}.${extension}`;
 
-  sharp(req.file.buffer)
+  await sharp(req.file.buffer)
     .resize(500, 500)
     .toFormat('jpeg')
     .jpeg({ quality: 90 })
     .toFile(`public/img/users/${req.file.filename}`);
 
   next();
-};
+});
 
 module.exports = {
   getAllUsers,
