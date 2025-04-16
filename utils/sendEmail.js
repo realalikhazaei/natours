@@ -16,6 +16,7 @@ const Email = class {
       return;
     } else {
       return nodemailer.createTransport({
+        debug: true,
         host: process.env.EMAIL_HOST,
         port: process.env.EMAIL_PORT,
         auth: {
@@ -27,7 +28,7 @@ const Email = class {
   }
 
   async send(template, subject) {
-    const html = pug.renderFile(`${__dirname}/../views/${template}.pug`, {
+    const html = pug.renderFile(`${__dirname}/../views/email/${template}.pug`, {
       subject,
       url: this.#url,
       firstName: this.firstName,
@@ -38,10 +39,25 @@ const Email = class {
       to: this.to,
       subject,
       html,
-      text: htmlToText.fromString(html),
+      text: htmlToText.convert(html),
     };
 
     await this.transporter().sendMail(mailOptions);
+  }
+
+  async sendText(subject, text) {
+    const mailOptions = {
+      from: this.from,
+      to: this.to,
+      subject,
+      text,
+    };
+
+    await this.transporter().sendMail(mailOptions);
+  }
+
+  async sendWelcome() {
+    await this.send('welcome', 'Welcome to Natours family!');
   }
 };
 

@@ -3,7 +3,7 @@ const catchAsync = require('./../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 const AppError = require('./../utils/appError');
 const { promisify } = require('util');
-const sendEmail = require('../utils/sendEmail');
+const Email = require('../utils/sendEmail');
 const crypto = require('crypto');
 
 /**Signs and sends a JWT
@@ -32,6 +32,8 @@ const signSendToken = (id, res, message, statusCode = 200) => {
 const signUp = catchAsync(async (req, res, next) => {
   const user = await User.create(req.body);
 
+  const url = `${req.protocol}://${req.get('host')}/my-profile`;
+  await new Email(user, url).sendWelcome();
   signSendToken(user._id, res, 'You have signed up successfully', 201);
 });
 
@@ -89,7 +91,7 @@ const forgotPassword = catchAsync(async (req, res, next) => {
   const message = `Hello ${user.name}. Here is your password reset link:\n${url}\nPlease ignore this email if you haven't requested to reset your password.`;
 
   try {
-    await sendEmail({ email, subject, message });
+    await new Email(user, url).sendText(subject, message);
     res.status(200).json({
       status: 'success',
       message: 'A password reset link has been sent to your email',
@@ -98,7 +100,7 @@ const forgotPassword = catchAsync(async (req, res, next) => {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });
-    res.status(500).json({
+    return res.status(500).json({
       status: 'error',
       message: 'There was an error sending the email. Please try again later',
     });
