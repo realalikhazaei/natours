@@ -5,6 +5,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
+const bookingRouter = require('./routes/bookingRoutes');
 const globalErrorHandler = require('./controllers/errorController');
 const rateLimit = require('express-rate-limit');
 const sanitize = require('express-mongo-sanitize');
@@ -15,13 +16,13 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 
-//Rate limit
-// const limiter = rateLimit({
-//   max: 100,
-//   windowMs: 60 * 60 * 1000,
-//   message: 'You have reached the maximum request rate. Please try again in one hour',
-// });
-// app.use('/api', limiter);
+// Rate limit
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: 'You have reached the maximum request rate. Please try again in one hour',
+});
+app.use('/api', limiter);
 
 //Logger middleware
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
@@ -34,7 +35,7 @@ app.use((req, res, next) => {
 });
 
 //Cookie-parser
-// app.use(cookieParser());
+app.use(cookieParser());
 
 //Static file serve
 app.use(express.static('public'));
@@ -47,17 +48,17 @@ app.set('views', 'views');
 app.use(sanitize());
 
 //Set special HTTP headers
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: {
-//       directives: {
-//         defaultSrc: ["'self'"],
-//         scriptSrc: ["'self'", 'https://cdnjs.cloudflare.com'],
-//         imgSrc: ["'self'", 'https://tile.openstreetmap.org', 'https://cdnjs.cloudflare.com'],
-//       },
-//     },
-//   }),
-// );
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", 'https://cdnjs.cloudflare.com'],
+        imgSrc: ["'self'", 'https://tile.openstreetmap.org', 'https://cdnjs.cloudflare.com'],
+      },
+    },
+  }),
+);
 
 //Avoid parameter pollution
 app.use(hpp({ whitelist: ['duration', 'price', 'difficulty'] }));
@@ -70,6 +71,7 @@ app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/bookings', bookingRouter);
 
 //Global error handler
 app.all('*', (req, res, next) => next(new AppError(`Cannot find this route ${req.originalUrl}`, 404)));
