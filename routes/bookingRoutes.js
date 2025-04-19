@@ -1,9 +1,9 @@
 const express = require('express');
-const { getCheckoutSession } = require('./../controllers/bookingController');
+const { getCheckoutSession, getCheckoutPage } = require('./../controllers/bookingController');
 const { protectRoute } = require('./../controllers/authController');
 
 const router = express.Router();
 
-router.get('/checkout-session/:tourID', protectRoute, getCheckoutSession);
+router.route('/checkout-session').get(getCheckoutPage).post(protectRoute, getCheckoutSession);
 
 module.exports = router;
