@@ -28,6 +28,12 @@ const getLoginPage = (req, res) => {
   });
 };
 
+const getSignupPage = (req, res) => {
+  res.status(200).render('signup', {
+    title: 'Sign Up',
+  });
+};
+
 const getProfilePage = (req, res) => {
   res.status(200).render('profile', {
     title: 'User Panel',
@@ -45,4 +51,4 @@ const getMyBookings = catchAsync(async (req, res, next) => {
   });
 });
 
-module.exports = { getOverviewPage, getTourPage, getLoginPage, getProfilePage, getMyBookings };
+module.exports = { getOverviewPage, getTourPage, getLoginPage, getSignupPage, getProfilePage, getMyBookings };

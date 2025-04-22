@@ -1,11 +1,13 @@
 /* eslint-disable */
 import { displayMap } from './map';
 import { login, logout } from './login';
+import { signup } from './signup';
 import { updateSettings } from './updateSettings';
 import { requestCheckout } from './payment';
 
 const map = document.getElementById('map');
 const loginForm = document.querySelector('.form-login');
+const signupForm = document.querySelector('.form-signup');
 const logoutBtn = document.querySelector('.nav__el--logout');
 const updateDataForm = document.querySelector('.form-user-data');
 const updatePassForm = document.querySelector('.form-user-settings');
@@ -19,6 +21,18 @@ if (loginForm) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     login(email, password);
+  });
+}
+
+if (signupForm) {
+  signupForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('passwordConfirm').value;
+    signup(name, email, password, passwordConfirm);
+    console.log(name, email, password, passwordConfirm);
   });
 }
 

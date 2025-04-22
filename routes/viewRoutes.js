@@ -3,6 +3,7 @@ const {
   getOverviewPage,
   getTourPage,
   getLoginPage,
+  getSignupPage,
   getProfilePage,
   getMyBookings,
 } = require('./../controllers/viewController');
@@ -18,6 +19,7 @@ router.use(isLoggedIn);
 router.get('/', getOverviewPage);
 router.get('/tour/:slug?', getTourPage);
 router.get('/login', getLoginPage);
+router.get('/signup', getSignupPage);
 router.get('/payStatus/:order?', protectRoute, getPaymentStatus);
 router.get('/my-bookings', protectRoute, getMyBookings);
 
