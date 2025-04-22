@@ -7,7 +7,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon server.js",
-    "start:prod": "cross-env NODE_ENV=production nodemon server.js",
+    "start:prod": "cross-env NODE_ENV=production node server.js",
     "lint": "cross-env eslint",
     "debug": "ndb server.js",
     "parcel:watch": "parcel watch ./public/js/index.js --dist-dir ./public/js/bundle",
