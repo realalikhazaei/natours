@@ -1,4 +1,6 @@
-node_modules
-dev-data
-public
+/node_modules
+/dev-data
+/.parcel-cache
 *.env
+# Local Netlify folder
+.netlify

@@ -10,7 +10,8 @@
     "start:prod": "cross-env NODE_ENV=production nodemon server.js",
     "lint": "cross-env eslint",
     "debug": "ndb server.js",
-    "parcel": "parcel watch ./public/js/index.js --dist-dir ./public/js/bundle"
+    "parcel:watch": "parcel watch ./public/js/index.js --dist-dir ./public/js/bundle",
+    "parcel:build": "parcel build ./public/js/index.js --dist-dir ./public/js/bundle"
   },
   "devDependencies": {
     "buffer": "^6.0.3",
@@ -26,6 +27,7 @@
   "dependencies": {
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
+    "compression": "^1.8.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",

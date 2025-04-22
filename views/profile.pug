@@ -1,8 +1,8 @@
 extends base
 
-mixin sideNav(icon, text, active)
+mixin sideNav(icon, text, link, active)
   li(class=`${ active ? 'side-nav--active' : ''}`)
-    a(href='#')
+    a(href=`${link}`)
       svg: use(xlink:href=`img/icons.svg#icon-${icon}`)
       | #{text}
 
@@ -11,19 +11,19 @@ block content
     .user-view
       nav.user-view__menu
         ul.side-nav
-          +sideNav('settings', 'Settings', true)
-          +sideNav('briefcase', 'My bookings')
-          +sideNav('star', 'My reviews')
-          +sideNav('credit-card', 'Billing')
+          +sideNav('settings', 'Settings', '#', true)
+          +sideNav('briefcase', 'My bookings', '/my-bookings')
+          +sideNav('star', 'My reviews', '#')
+          +sideNav('credit-card', 'Billing', '#')
 
         -if (user.role === 'admin')
           .admin-nav
             h5.admin-nav__heading Admin
             ul.side-nav
-              +sideNav('map', 'Manage tours')
-              +sideNav('users', 'Manage users')
-              +sideNav('star', 'Manage reviews')
-              +sideNav('briefcase', 'Manage bookings')
+              +sideNav('map', 'Manage tours', '#')
+              +sideNav('users', 'Manage users', '#')
+              +sideNav('star', 'Manage reviews', '#')
+              +sideNav('briefcase', 'Manage bookings', '#')
 
       .user-view__content
         .user-view__form-container

@@ -2,8 +2,12 @@ extends base
 
 block content
   main.main
-    .error
-      .error__title
-        h2.heading-secondary.heading-secondary--error Uh oh! Something went wrong!
-        h2.error__emoji 😢🤯
-      .error__msg= message
+    .payment
+      .payment__title
+        - if (booking.order === 'notfound')
+          h2.heading-secondary.heading-secondary--error No order ID found!!!
+        - if (booking.paid === false)
+          h2.heading-secondary.heading-secondary--error The order payment was not successful
+        - if (booking.paid === true)
+          h2.heading-secondary The order payment was successful
+      .payment__msg= `Order ID: ${booking.order}`

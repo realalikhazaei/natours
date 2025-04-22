@@ -7,17 +7,26 @@ const catchAsync = require('../utils/catchAsync');
 const getCheckoutSession = catchAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.body.tour);
   if (!tour) return next(`Could not access the payment page. Please try again`, 400);
+  const orderId = crypto.randomUUID();
 
   const session = await axios({
     url: 'https://gateway.zibal.ir/v1/request',
     method: 'POST',
     data: {
       merchant: 'zibal',
-      amount: tour.price * 100,
+      amount: tour.price * 1000,
       callbackUrl: `${req.protocol}://${req.get('host')}/api/v1/bookings/checkout-session`,
-      description: `TourID: ${tour._id}`,
-      orderId: crypto.randomUUID(),
+      orderId,
     },
+  });
+
+  await Booking.create({
+    user: req.user._id,
+    tour,
+    price: tour.price,
+    order: orderId,
+    track: session.data.trackId,
+    paid: false,
   });
 
   res.status(200).json({
@@ -39,34 +48,23 @@ const verifyCheckoutSession = catchAsync(async (req, res, next) => {
     },
   });
 
-  if (verifyPayment.data.result === 201) {
-    res.redirect(`/payStatus?order=${orderId}`);
-    return;
-  }
-
-  if (verifyPayment.data.result === 203) return next();
-
-  let paid;
   switch (verifyPayment.data.result) {
-    case 100:
-      paid = true;
-      break;
-
-    case 202:
-      paid = false;
-      break;
+    case 201: {
+      res.redirect(`/payStatus?order=${orderId}`);
+      return next();
+    }
+    case 203: {
+      res.redirect(`/payStatus?order=notfound`);
+      return next();
+    }
   }
 
-  const tour = verifyPayment.data.description?.split(' ')[1];
-  const amount = verifyPayment.data.amount;
-
-  await Booking.create({ user: req.user._id, tour, order: orderId, track: trackId, price: amount, paid });
-
+  await Booking.findOneAndUpdate({ order: orderId }, { paid: verifyPayment.data.result === 100 && true });
   res.redirect(`/payStatus?order=${orderId}`);
 });
 
 const getPaymentStatus = catchAsync(async (req, res, next) => {
-  const order = req.query.order || null;
+  const order = req.query.order || 'notfound';
   const booking = await Booking.findOne({ order });
 
   res.status(200).render('payStatus', {

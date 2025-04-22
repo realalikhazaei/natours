@@ -13,6 +13,8 @@ const helmet = require('helmet');
 const hpp = require('hpp');
 const httpClean = require('./utils/httpClean');
 const cookieParser = require('cookie-parser');
+const comression = require('compression');
+const compression = require('compression');
 
 const app = express();
 
@@ -65,6 +67,9 @@ app.use(hpp({ whitelist: ['duration', 'price', 'difficulty'] }));
 
 //Remove HTTP tags
 app.use(httpClean);
+
+//Compress responses
+app.use(compression());
 
 //Routers
 app.use('/', viewRouter);

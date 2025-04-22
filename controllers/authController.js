@@ -14,13 +14,13 @@ const crypto = require('crypto');
  * @param {number} statusCode
  * @default statusCode=200
  */
-const signSendToken = (id, res, message, statusCode = 200) => {
+const signSendToken = (id, res, req, message, statusCode = 200) => {
   const token = jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
 
   res.cookie('jwt', token, {
     expires: new Date(Date.now() + process.env.COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
     httpOnly: true,
-    secure: true,
+    secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
   });
   res.status(statusCode).json({
     status: 'success',
