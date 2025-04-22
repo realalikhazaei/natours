@@ -19,7 +19,8 @@ const updateMe = catchAsync(async (req, res, next) => {
   const { password, passwordConfirm } = req.body;
   if (password || passwordConfirm)
     return next(new AppError('To change your password, please head to this link instead: /update-password', 400));
-  if (req.file) req.body.photo = req.file.filename;
+
+  req.body.photo = req.file?.filename === undefined ? req.user.photo : req.file?.filename;
 
   const user = await User.findByIdAndUpdate(req.user._id, req.body, { new: true, runValidators: true });
 

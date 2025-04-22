@@ -3,7 +3,6 @@ import { showAlert } from './alerts';
 
 export const updateSettings = async (data, type = 'data') => {
   try {
-    console.log(data);
     const res = await axios({
       url: `/api/v1/users/update-${type === 'password' ? 'password' : 'my-info'}`,
       method: 'PATCH',
