@@ -14,13 +14,13 @@ const crypto = require('crypto');
  * @param {number} statusCode
  * @default statusCode=200
  */
-const signSendToken = (id, res, req, message, statusCode = 200) => {
+const signSendToken = (id, req, res, message, statusCode = 200) => {
   const token = jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
 
   res.cookie('jwt', token, {
     expires: new Date(Date.now() + process.env.COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
     httpOnly: true,
-    secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+    secure: req.headers?.['x-forwarded-proto'] === 'https' || req.secure,
   });
   res.status(statusCode).json({
     status: 'success',
@@ -34,7 +34,7 @@ const signUp = catchAsync(async (req, res, next) => {
 
   const url = `${req.protocol}://${req.get('host')}/my-profile`;
   await new Email(user, url).sendWelcome();
-  signSendToken(user._id, res, 'You have signed up successfully', 201);
+  signSendToken(user._id, req, res, 'You have signed up successfully', 201);
 });
 
 const login = catchAsync(async (req, res, next) => {
@@ -46,7 +46,7 @@ const login = catchAsync(async (req, res, next) => {
   const correct = await user?.comparePasswords(password);
   if (!user || !correct) return next(new AppError('There is no account with this email and password', 404));
 
-  signSendToken(user._id, res, 'You have been logged in successfully');
+  signSendToken(user._id, req, res, 'You have been logged in successfully');
 });
 
 const protectRoute = catchAsync(async (req, res, next) => {
@@ -122,7 +122,7 @@ const resetPassword = catchAsync(async (req, res, next) => {
   user.passwordResetExpires = undefined;
   await user.save();
 
-  signSendToken(user._id, res, 'Your password has been reset successfully');
+  signSendToken(user._id, req, res, 'Your password has been reset successfully');
 });
 
 const updatePassword = catchAsync(async (req, res, next) => {
@@ -138,7 +138,7 @@ const updatePassword = catchAsync(async (req, res, next) => {
   user.passwordConfirm = newPasswordConfirm;
   await user.save();
 
-  signSendToken(user._id, res, 'Your password has been changed successfully');
+  signSendToken(user._id, req, res, 'Your password has been changed successfully');
 });
 
 const isLoggedIn = async (req, res, next) => {
