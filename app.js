@@ -13,8 +13,8 @@ const helmet = require('helmet');
 const hpp = require('hpp');
 const httpClean = require('./utils/httpClean');
 const cookieParser = require('cookie-parser');
-const comression = require('compression');
 const compression = require('compression');
+const cors = require('cors');
 
 const app = express();
 
@@ -70,6 +70,10 @@ app.use(httpClean);
 
 //Compress responses
 app.use(compression());
+
+//CORS headers
+app.use(cors());
+app.options('*', cors());
 
 //Routers
 app.use('/', viewRouter);
