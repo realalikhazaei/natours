@@ -1,0 +1,45 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Natours project",
+  "license": "ISC",
+  "author": "Ali",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "cross-env nodemon server.js",
+    "start:prod": "cross-env NODE_ENV=production nodemon server.js",
+    "lint": "eslint",
+    "debug": "cross-env ndb server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "hpp": "^0.2.3",
+    "html-to-text": "^9.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongo-sanitize": "^1.1.0",
+    "mongoose": "^8.14.0",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.10.1",
+    "pug": "^3.0.3",
+    "slugify": "^1.6.6",
+    "validator": "^13.15.0",
+    "xss": "^1.0.15"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "globals": "^16.0.0",
+    "ndb": "^0.2.4",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.5.3"
+  }
+}
