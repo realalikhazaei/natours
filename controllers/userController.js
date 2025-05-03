@@ -35,4 +35,8 @@ const deleteMe = async (req, res, next) => {
   });
 };
 
-module.exports = { getAllUsers, getUser, createUser, updateUser, deleteUser, updateMe, deleteMe };
+const getMe = (req, res, next) => {
+  (req.params.id = req.user._id), next();
+};
+
+module.exports = { getAllUsers, getUser, createUser, updateUser, deleteUser, updateMe, deleteMe, getMe };

@@ -36,7 +36,6 @@ const signup = async (req, res, next) => {
 };
 
 const login = async (req, res, next) => {
-  console.log(req.body);
   const { email, password } = req.body;
   if (!email) return next(new AppError('Please provide your email address', 400));
   if (!password) return next(new AppError('Please provide your password', 400));
@@ -69,7 +68,7 @@ const protectRoute = async (req, res, next) => {
 
 const restrictTo = (...roles) => {
   return (req, res, next) => {
-    if (!roles.includes(req.user.role)) return next(new AppError('You are not allowed to access this route.', 403));
+    if (!roles.includes(req.user.role)) return next(new AppError('You are not authorized to access this route.', 403));
     return next();
   };
 };

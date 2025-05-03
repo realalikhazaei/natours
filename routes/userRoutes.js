@@ -7,6 +7,7 @@ const {
   deleteUser,
   updateMe,
   deleteMe,
+  getMe,
 } = require('../controllers/userController');
 const {
   signup,
@@ -24,11 +25,15 @@ router.post('/signup', signup);
 router.post('/login', login);
 router.post('/forgot-password', forgotPassword);
 router.patch('/reset-password/{:token}', resetPassword);
-router.patch('/change-password', protectRoute, changePassword);
-router.patch('/update-my-info', protectRoute, updateMe);
-router.delete('/delete-my-account', protectRoute, deleteMe);
 
-router.use(protectRoute, restrictTo('admin'));
+router.use(protectRoute);
+
+router.patch('/change-password', changePassword);
+router.patch('/update-my-info', updateMe);
+router.delete('/delete-my-account', deleteMe);
+router.get('/my-profile', getMe, getUser);
+
+router.use(restrictTo('admin'));
 
 router.route('/').get(getAllUsers).post(createUser);
 router.route('/:id').get(getUser).patch(updateUser).delete(deleteUser);

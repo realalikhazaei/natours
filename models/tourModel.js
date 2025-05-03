@@ -119,6 +119,25 @@ tourSchema.pre(/^find/, function (next) {
   next();
 });
 
+//Populating tour guides
+tourSchema.pre(/^find/, function (next) {
+  this.populate({ path: 'guides', select: 'name photo role' });
+  next();
+});
+
+//Add virtual reference for reviews
+tourSchema.virtual('reviews', {
+  ref: 'Review',
+  foreignField: 'tour',
+  localField: '_id',
+});
+
+//Populate virtual reference for reviews
+tourSchema.pre(/^find/, function (next) {
+  this.populate({ path: 'reviews', select: 'review rating user' });
+  next();
+});
+
 const Tour = mongoose.model('Tour', tourSchema);
 
 module.exports = Tour;
