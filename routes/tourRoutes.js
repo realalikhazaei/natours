@@ -9,6 +9,8 @@ const {
   top5Tours,
   toursStats,
   monthlyPlan,
+  toursWithinRange,
+  toursDistances,
 } = require('../controllers/tourController');
 const { protectRoute, restrictTo } = require('../controllers/authController');
 
@@ -19,6 +21,8 @@ router.use('/:tour/reviews', reviewRouter);
 router.get('/top-5-tours', top5Tours, getAllTours);
 router.get('/tours-stats', protectRoute, restrictTo('admin', 'lead-guide', 'guide'), toursStats);
 router.get('/monthly-plan/:year', protectRoute, restrictTo('admin', 'lead-guide', 'guide'), monthlyPlan);
+router.get('/tours-within-range', toursWithinRange);
+router.get('/tours-distances', toursDistances);
 
 router.route('/').get(getAllTours).post(protectRoute, restrictTo('admin', 'lead-guide'), createTour);
 router

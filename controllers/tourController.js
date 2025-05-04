@@ -82,4 +82,56 @@ const monthlyPlan = async (req, res, next) => {
   });
 };
 
-module.exports = { getAllTours, getTour, createTour, updateTour, deleteTour, top5Tours, toursStats, monthlyPlan };
+const toursWithinRange = async (req, res, next) => {
+  const { distance = 200, latlng, unit = 'km' } = req.query;
+  const [lat, lng] = latlng.split(',');
+  const distanceRadian = distance / (unit === 'mi' ? 3963.2 : 6378.1);
+
+  const tours = await Tour.find({ startLocation: { $geoWithin: { $centerSphere: [[+lng, +lat], distanceRadian] } } });
+
+  res.status(200).json({
+    status: 'success',
+    results: tours.length,
+    data: tours,
+  });
+};
+
+const toursDistances = async (req, res, next) => {
+  const { latlng, unit = 'km' } = req.query;
+  const [lat, lng] = latlng.split(',');
+  const distanceMultiplier = unit === 'mi' ? 0.000621 : 0.001;
+
+  const distances = await Tour.aggregate([
+    {
+      $geoNear: {
+        near: {
+          type: 'Point',
+          coordinates: [+lng, +lat],
+        },
+        distanceField: 'distance',
+        distanceMultiplier,
+      },
+    },
+    {
+      $project: { name: 1, distance: 1, price: 1, difficulty: 1 },
+    },
+  ]);
+
+  res.status(200).json({
+    status: 'success',
+    data: distances,
+  });
+};
+
+module.exports = {
+  getAllTours,
+  getTour,
+  createTour,
+  updateTour,
+  deleteTour,
+  top5Tours,
+  toursStats,
+  monthlyPlan,
+  toursWithinRange,
+  toursDistances,
+};
