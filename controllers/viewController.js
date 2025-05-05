@@ -9,4 +9,13 @@ const getOverview = async (req, res, next) => {
   });
 };
 
-module.exports = { getOverview };
+const getTour = async (req, res, next) => {
+  const tour = await Tour.findOne({ slug: req.params?.slug });
+
+  res.status(200).render('tour', {
+    title: tour.name,
+    tour,
+  });
+};
+
+module.exports = { getOverview, getTour };
