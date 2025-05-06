@@ -139,4 +139,43 @@ const changePassword = async (req, res, next) => {
   await signSendToken(user._id, res, 'Your password has been changed successfully.');
 };
 
-module.exports = { signup, login, protectRoute, restrictTo, forgotPassword, resetPassword, changePassword };
+const logout = (req, res) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10000),
+    httpOnly: true,
+    secure: true,
+  });
+
+  res.status(200).json({
+    status: 'success',
+    message: 'You have been logged out successfully',
+  });
+};
+
+const isLoggedIn = async (req, res, next) => {
+  const token = req.cookies?.jwt;
+  if (!token || token === 'loggedout') return next();
+
+  const payload = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+  const user = await User.findById(payload.id);
+  if (!user) return next();
+
+  const passwordChanged = user?.passwordChangedAfter(payload.iat);
+  if (passwordChanged) return next();
+
+  res.locals.user = user;
+  next();
+};
+
+module.exports = {
+  signup,
+  login,
+  protectRoute,
+  restrictTo,
+  forgotPassword,
+  resetPassword,
+  changePassword,
+  logout,
+  isLoggedIn,
+};

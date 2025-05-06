@@ -24,4 +24,10 @@ const getLogin = (req, res) => {
   });
 };
 
-module.exports = { getOverview, getTour, getLogin };
+const getProfile = (req, res) => {
+  res.status(200).render('profile', {
+    title: 'My Profile',
+  });
+};
+
+module.exports = { getOverview, getTour, getLogin, getProfile };

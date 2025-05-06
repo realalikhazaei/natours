@@ -671,6 +671,7 @@ var _map = require("./map");
 var _login = require("./login");
 const map = document.getElementById('map');
 const loginForm = document.querySelector('.login-form');
+const logoutBtn = document.getElementById('logout');
 if (map) (0, _map.displayMap)(JSON.parse(map.dataset.locations));
 if (loginForm) loginForm.addEventListener('submit', (event)=>{
     event.preventDefault();
@@ -680,6 +681,9 @@ if (loginForm) loginForm.addEventListener('submit', (event)=>{
         email,
         password
     });
+});
+if (logoutBtn) logoutBtn.addEventListener('click', ()=>{
+    (0, _login.logout)();
 });
 
 },{"./map":"GDuAq","./login":"7yHem"}],"GDuAq":[function(require,module,exports,__globalThis) {
@@ -768,6 +772,7 @@ exports.export = function(dest, destName, get) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "login", ()=>login);
+parcelHelpers.export(exports, "logout", ()=>logout);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _alert = require("./alert");
@@ -789,7 +794,22 @@ const login = async (data)=>{
         (0, _alert.showAlert)('error', err.response.data.message);
     }
 };
-const logout = ()=>{};
+const logout = async ()=>{
+    try {
+        const res = await (0, _axiosDefault.default)({
+            url: '/api/v1/users/logout',
+            method: 'GET'
+        });
+        if (res.data.status === 'success') {
+            (0, _alert.showAlert)('success', res.data.message);
+            window.setTimeout(()=>{
+                location.assign('/');
+            }, 1500);
+        }
+    } catch (err) {
+        (0, _alert.showAlert)('error', err.response.data.message);
+    }
+};
 
 },{"axios":"jo6P5","./alert":"kxdiQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jo6P5":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");

@@ -1,4 +1,4 @@
-10758
+10771
 61C:\Projects\natours-final\node_modules\qs\.github\FUNDING.yml133903180537814461 0
 66C:\Projects\natours-final\node_modules\lodash\_baseWrapperValue.js133889349932138541 0
 99C:\Projects\natours-final\node_modules\posthtml\node_modules\posthtml-parser\dist\chunk.2UQLUWPH.js133909908617541048 0
@@ -11,7 +11,7 @@
 78C:\Projects\natours-final\node_modules\eslint\lib\rules\no-implicit-globals.js133909908751666834 0
 98C:\Projects\natours-final\node_modules\posthtml-parser\node_modules\htmlparser2\lib\esm\index.d.ts133909908670696347 0
 45C:\Projects\natours-final\node_modules\semver133903181021781355 1
-32C:\Projects\natours-final\app.js133909910279085331 0
+32C:\Projects\natours-final\app.js133910280045489000 0
 36C:\Projects\natours-final\.gitignore133903191333483411 0
 70C:\Projects\natours-final\node_modules\axios\dist\esm\axios.min.js.map133909943923839983 0
 58C:\Projects\natours-final\node_modules\promise\lib\core.js133905204877081778 0
@@ -151,17 +151,17 @@
 73C:\Projects\natours-final\node_modules\caniuse-lite\data\features\cors.js133909908712640248 0
 65C:\Projects\natours-final\node_modules\nodemon\doc\cli\config.txt133903181021623053 0
 67C:\Projects\natours-final\node_modules\prettier\plugins\glimmer.mjs133903184994643751 0
-38C:\Projects\natours-final\node_modules133909956125782592 1
+38C:\Projects\natours-final\node_modules133910279263439775 1
 67C:\Projects\natours-final\node_modules\sparse-bitfield\package.json133903181467526231 0
 63C:\Projects\natours-final\node_modules\locate-path\package.json133903184083127042 0
 59C:\Projects\natours-final\public\img\tours\tour-9-cover.jpg133903971702713772 0
 59C:\Projects\natours-final\node_modules\undefsafe\example.js133903181019743941 0
-43C:\Projects\natours-final\package-lock.json133909956135247060 0
+43C:\Projects\natours-final\package-lock.json133910279271035433 0
 70C:\Projects\natours-final\node_modules\eslint\node_modules\glob-parent133909908903926007 1
 69C:\Projects\natours-final\node_modules\lmdb\dependencies\lmdb-data-v1133909908615538142 1
 59C:\Projects\natours-final\node_modules\htmlnano\lib\presets133909908692612894 1
 58C:\Projects\natours-final\node_modules\lodash\trimStart.js133889350014153765 0
-38C:\Projects\natours-final\package.json133909956127042533 0
+38C:\Projects\natours-final\package.json133910279264333730 0
 82C:\Projects\natours-final\node_modules\mongoose\lib\helpers\query\hasDollarKeys.js133909908730960011 0
 65C:\Projects\natours-final\node_modules\validator\es\lib\isSlug.js133903356765934770 0
 81C:\Projects\natours-final\node_modules\caniuse-lite\data\features\font-kerning.js133909908764101079 0
@@ -232,7 +232,7 @@
 68C:\Projects\natours-final\node_modules\axios\lib\helpers\readBlob.js133909943921032670 0
 58C:\Projects\natours-final\node_modules\@parcel\runtime-rsc133909908626159980 1
 58C:\Projects\natours-final\node_modules\fast-deep-equal\es6133903184087290435 1
-44C:\Projects\natours-final\public\js\login.js133909964797883052 0
+44C:\Projects\natours-final\public\js\login.js133910329599462579 0
 83C:\Projects\natours-final\node_modules\posthtml\node_modules\entities\lib\decode.js133909908631503482 0
 73C:\Projects\natours-final\node_modules\@parcel\utils\test\urlJoin.test.js133909908684467562 0
 45C:\Projects\natours-final\views\payStatus.pug133908577006791892 0
@@ -249,7 +249,7 @@
 55C:\Projects\natours-final\node_modules\prettier\doc.mjs133903184993712251 0
 44C:\Projects\natours-final\node_modules\json5133909908656269151 1
 62C:\Projects\natours-final\node_modules\concat-map\package.json133903181017346864 0
-43C:\Projects\natours-final\views\profile.pug133908577006801889 0
+43C:\Projects\natours-final\views\profile.pug133910325944936018 0
 84C:\Projects\natours-final\node_modules\@parcel\transformer-svg\src\SVGTransformer.js133909908634757225 0
 119C:\Projects\natours-final\node_modules\msgpackr-extract\node_modules\.bin\node-gyp-build-optional-packages-optional.cmd133909908906425026 0
 58C:\Projects\natours-final\node_modules\lodash\fp\object.js133889350007767410 0
@@ -272,7 +272,7 @@
 64C:\Projects\natours-final\node_modules\uri-js\dist\esnext\uri.js133903184088537697 0
 58C:\Projects\natours-final\node_modules\micromatch\index.js133909908617501015 0
 43C:\Projects\natours-final\views\_footer.pug133908610244515004 0
-43C:\Projects\natours-final\views\_header.pug133909952514781435 0
+43C:\Projects\natours-final\views\_header.pug133910292535518766 0
 58C:\Projects\natours-final\node_modules\pug-attrs\README.md133905204868831227 0
 55C:\Projects\natours-final\public\img\tours\tour-3-3.jpg133903971699362035 0
 84C:\Projects\natours-final\node_modules\ndb\spec\jspec\spec\unit\spec.grammar-less.js133903356936171315 0
@@ -356,7 +356,7 @@
 69C:\Projects\natours-final\node_modules\validator\lib\isHexadecimal.js133903356763264813 0
 65C:\Projects\natours-final\node_modules\buffer-equal-constant-time133905057769565122 1
 60C:\Projects\natours-final\node_modules\mongodb\lib\db.js.map133903181478589749 0
-42C:\Projects\natours-final\public\js\bundle133909966289685959 1
+42C:\Projects\natours-final\public\js\bundle133910329611719070 1
 65C:\Projects\natours-final\node_modules\lodash\fp\sortedIndexOf.js133889350010815673 0
 60C:\Projects\natours-final\node_modules\mquery\lib\collection133903181469304825 1
 59C:\Projects\natours-final\public\img\tours\tour-7-cover.jpg133903971702034270 0
@@ -365,7 +365,7 @@
 57C:\Projects\natours-final\node_modules\es-set-tostringtag133909943918014311 1
 88C:\Projects\natours-final\node_modules\ndb\spec\jspec\spec\unit\spec.shared-behaviors.js133903356936561329 0
 79C:\Projects\natours-final\node_modules\node-gyp-build-optional-packages\LICENSE133909908615448132 0
-46C:\Projects\natours-final\routes\userRoutes.js133907665215626013 0
+46C:\Projects\natours-final\routes\userRoutes.js133910123418383493 0
 62C:\Projects\natours-final\node_modules\proxy-addr\package.json133903180528891769 0
 70C:\Projects\natours-final\node_modules\caniuse-lite\data\regions\AZ.js133909908678724454 0
 52C:\Projects\natours-final\node_modules\pug-error\lib133905204870437007 1
@@ -379,7 +379,7 @@
 68C:\Projects\natours-final\node_modules\@parcel\transformer-babel\lib133909908661973952 1
 82C:\Projects\natours-final\node_modules\@parcel\utils\test\input\config\config.json133909908684707520 0
 63C:\Projects\natours-final\node_modules\mongodb\lib\index.js.map133903181479892049 0
-46C:\Projects\natours-final\routes\viewRoutes.js133909959904583595 0
+46C:\Projects\natours-final\routes\viewRoutes.js133910293172318863 0
 67C:\Projects\natours-final\node_modules\lodash\fp\_convertBrowser.js133889349938025179 0
 73C:\Projects\natours-final\node_modules\object-inspect\example\circular.js133903180531740356 0
 66C:\Projects\natours-final\node_modules\regenerator-runtime\LICENSE133909908615438133 0
@@ -416,7 +416,7 @@
 63C:\Projects\natours-final\node_modules\ajv\lib\dot\contains.jst133903184098404851 0
 52C:\Projects\natours-final\node_modules\dotenv-expand133909908635368406 1
 56C:\Projects\natours-final\node_modules\parseurl\index.js133903180528975915 0
-44C:\Projects\natours-final\public\js\index.js133909964709502454 0
+44C:\Projects\natours-final\public\js\index.js133910289474079419 0
 61C:\Projects\natours-final\node_modules\word-wrap\package.json133903184083015978 0
 67C:\Projects\natours-final\node_modules\uri-js\dist\es5\uri.all.d.ts133903184093973954 0
 59C:\Projects\natours-final\node_modules\punycode\punycode.js133903181467872704 0
@@ -430,7 +430,7 @@
 53C:\Projects\natours-final\node_modules\setprototypeof133903180531163101 1
 73C:\Projects\natours-final\node_modules\side-channel-weakmap\tsconfig.json133903180532485013 0
 88C:\Projects\natours-final\node_modules\posthtml\node_modules\entities\lib\encode-trie.js133909908634059340 0
-51C:\Projects\natours-final\public\js\bundle\index.js133909966282365704 0
+51C:\Projects\natours-final\public\js\bundle\index.js133910329610571005 0
 85C:\Projects\natours-final\node_modules\posthtml\node_modules\domhandler\lib\node.d.ts133909908636899622 0
 89C:\Projects\natours-final\node_modules\@parcel\core\test\fixtures\local-plugin-config-pkg133909908687740570 1
 62C:\Projects\natours-final\node_modules\validator\lib\escape.js133903356761534778 0
@@ -446,16 +446,9 @@
 63C:\Projects\natours-final\node_modules\ajv\lib\dot\required.jst133903184099450480 0
 54C:\Projects\natours-final\node_modules\math-intrinsics133903180538527966 1
 105C:\Projects\natours-final\node_modules\posthtml\node_modules\dom-serializer\lib\esm\foreignNames.d.ts.map133909908635488401 0
-55C:\Projects\natours-final\public\js\bundle\index.js.map133909966289075937 0
+55C:\Projects\natours-final\public\js\bundle\index.js.map133910329611581043 0
 85C:\Projects\natours-final\node_modules\eslint\lib\rules\no-shadow-restricted-names.js133909908759122175 0
 89C:\Projects\natours-final\node_modules\posthtml\node_modules\domhandler\lib\node.d.ts.map133909908630393710 0
-65C:\Projects\natours-final\node_modules\validator\es\lib\isIMEI.js133903356763504809 0
-74C:\Projects\natours-final\node_modules\eslint-config-prettier\package.json133889366952247542 0
-70C:\Projects\natours-final\node_modules\caniuse-lite\data\regions\GB.js133909908767371132 0
-77C:\Projects\natours-final\node_modules\cosmiconfig\dist\ExplorerSync.d.ts.map133909908668582414 0
-102C:\Projects\natours-final\node_modules\resolve\test\resolver\multirepo\packages\package-a\package.json133905204887012484 0
-61C:\Projects\natours-final\node_modules\lodash\_createCurry.js133889349955455435 0
-60C:\Projects\natours-final\node_modules\with\src\reference.ts133905204876726301 0
 46C:\Projects\natours-final\public\img\icons.svg133903971698344713 0
 88C:\Projects\natours-final\node_modules\posthtml\node_modules\dom-serializer\package.json133909908634049318 0
 55C:\Projects\natours-final\node_modules\ajv\lib\ajv.d.ts133903184099801238 0
@@ -872,9 +865,9 @@
 55C:\Projects\natours-final\public\img\tours\tour-9-1.jpg133903971702535484 0
 83C:\Projects\natours-final\node_modules\eslint\lib\languages\js\source-code\index.js133909908695054267 0
 61C:\Projects\natours-final\node_modules\resolve\test\node_path133905204883089715 1
+58C:\Projects\natours-final\node_modules\lodash\_baseRest.js133889349922903799 0
 56C:\Projects\natours-final\node_modules\lodash\isError.js133889350003130055 0
 65C:\Projects\natours-final\node_modules\whatwg-url\lib\Function.js133903181467949715 0
-58C:\Projects\natours-final\node_modules\lodash\_baseRest.js133889349922903799 0
 93C:\Projects\natours-final\public\img\tours\tour-67fe476df29a92b5b4e17a74-1744722413348-2.jpeg133903971700867616 0
 81C:\Projects\natours-final\node_modules\@babel\types\lib\modifications\inherits.js133909908731020015 0
 79C:\Projects\natours-final\node_modules\mongodb\lib\cursor\run_command_cursor.js133903181475342690 0
@@ -991,7 +984,7 @@
 47C:\Projects\natours-final\node_modules\pug-load133905204869117768 1
 43C:\Projects\natours-final\node_modules\.bin133909908963678045 1
 63C:\Projects\natours-final\node_modules\validator\lib\isAlpha.js133903356761854807 0
-57C:\Projects\natours-final\node_modules\.package-lock.json133909956141691252 0
+57C:\Projects\natours-final\node_modules\.package-lock.json133910279279013441 0
 70C:\Projects\natours-final\node_modules\mongodb\src\operations\count.ts133903181485455019 0
 66C:\Projects\natours-final\node_modules\domutils\lib\feeds.d.ts.map133889353691859702 0
 82C:\Projects\natours-final\node_modules\eslint\lib\rules\max-statements-per-line.js133909908739661950 0
@@ -1198,7 +1191,6 @@
 65C:\Projects\natours-final\node_modules\file-entry-cache\README.md133903184082466572 0
 66C:\Projects\natours-final\node_modules\@parcel\config-default\test133909908618863442 1
 72C:\Projects\natours-final\node_modules\uri-js\dist\esnext\regexps-uri.js133903184086802702 0
-67C:\Projects\natours-final\node_modules\ajv\lib\dotjs\uniqueItems.js133903184096051857 0
 43C:\Projects\natours-final\node_modules\bson133903181472369561 1
 63C:\Projects\natours-final\node_modules\pug-filters\package.json133905204869327758 0
 48C:\Projects\natours-final\node_modules\es-errors133903180537705183 1
@@ -1288,6 +1280,14 @@
 62C:\Projects\natours-final\node_modules\node-addon-api\index.js133909908661378027 0
 75C:\Projects\natours-final\node_modules\@swc\helpers\cjs\_overload_yield.cjs133909908680762989 0
 56C:\Projects\natours-final\node_modules\undefsafe\.jscsrc133903181017414664 0
+68C:\Projects\natours-final\node_modules\@swc\helpers\cjs\_extends.cjs133909908674692024 0
+56C:\Projects\natours-final\node_modules\lodash\initial.js133889350000505452 0
+52C:\Projects\natours-final\node_modules\cookie-parser133910279264180455 1
+55C:\Projects\natours-final\node_modules\qs\test\parse.js133903180533730120 0
+62C:\Projects\natours-final\node_modules\browserslist\browser.js133909908635328443 0
+54C:\Projects\natours-final\node_modules\prettier\doc.js133903184990077275 0
+70C:\Projects\natours-final\node_modules\htmlnano\docs\package-lock.json133909908679158442 0
+55C:\Projects\natours-final\node_modules\type-is\index.js133903180527570672 0
 60C:\Projects\natours-final\node_modules\lodash\_setToArray.js133889349974130508 0
 56C:\Projects\natours-final\node_modules\dunder-proto\test133903180532166319 1
 61C:\Projects\natours-final\node_modules\validator\lib\isJWT.js133903356764374752 0
@@ -1611,7 +1611,7 @@
 64C:\Projects\natours-final\node_modules\@parcel\namer-default\lib133909908616586370 1
 47C:\Projects\natours-final\node_modules\htmlnano133909908694636672 1
 50C:\Projects\natours-final\node_modules\htmlparser2133909908670317684 1
-49C:\Projects\natours-final\node_modules\axios\dist133909943918831640 1
+49C:\Projects\natours-final\node_modules\axios\dist133909943923310782 1
 42C:\Projects\natours-final\node_modules\ndb133903356931575270 1
 52C:\Projects\natours-final\node_modules\cross-env\src133903182085639834 1
 60C:\Projects\natours-final\node_modules\lodash\_baseFilter.js133889349898157931 0
@@ -1654,6 +1654,7 @@
 71C:\Projects\natours-final\node_modules\mongodb\lib\gridfs\upload.js.map133903181482620074 0
 54C:\Projects\natours-final\node_modules\bson\LICENSE.md133903181472005825 0
 61C:\Projects\natours-final\node_modules\validator\lib\alpha.js133903356761244769 0
+92C:\Projects\natours-final\node_modules\cookie-parser\node_modules\cookie-signature\Readme.md133910279264160429 0
 66C:\Projects\natours-final\node_modules\lodash\sortedLastIndexOf.js133889350011005579 0
 50C:\Projects\natours-final\node_modules\is-arrayish133909908633196918 1
 81C:\Projects\natours-final\node_modules\ndb\spec\jspec\templates\rails\server.html133903356936941309 0
@@ -1959,7 +1960,6 @@
 106C:\Projects\natours-final\node_modules\posthtml-parser\node_modules\htmlparser2\lib\esm\Tokenizer.d.ts.map133909908663302759 0
 50C:\Projects\natours-final\node_modules\pug-runtime133905204872650132 1
 59C:\Projects\natours-final\node_modules\msgpackr-extract\bin133909908621490307 1
-62C:\Projects\natours-final\node_modules\ajv\lib\dotjs\README.md133903184099619563 0
 92C:\Projects\natours-final\node_modules\@babel\types\lib\validators\react\isReactComponent.js133909908743977326 0
 69C:\Projects\natours-final\node_modules\object-inspect\test-core-js.js133903180537914448 0
 84C:\Projects\natours-final\node_modules\entities\lib\generated\decode-data-xml.js.map133889353706133257 0
@@ -2124,6 +2124,13 @@
 63C:\Projects\natours-final\node_modules\pug-runtime\package.json133905204872093338 0
 60C:\Projects\natours-final\node_modules\posthtml\lib\index.js133909908619321157 0
 79C:\Projects\natours-final\node_modules\caniuse-lite\data\features\decorators.js133909908757470841 0
+65C:\Projects\natours-final\node_modules\validator\es\lib\isIMEI.js133903356763504809 0
+74C:\Projects\natours-final\node_modules\eslint-config-prettier\package.json133889366952247542 0
+70C:\Projects\natours-final\node_modules\caniuse-lite\data\regions\GB.js133909908767371132 0
+77C:\Projects\natours-final\node_modules\cosmiconfig\dist\ExplorerSync.d.ts.map133909908668582414 0
+102C:\Projects\natours-final\node_modules\resolve\test\resolver\multirepo\packages\package-a\package.json133905204887012484 0
+61C:\Projects\natours-final\node_modules\lodash\_createCurry.js133889349955455435 0
+60C:\Projects\natours-final\node_modules\with\src\reference.ts133905204876726301 0
 60C:\Projects\natours-final\node_modules\with\lib\globals.d.ts133905204875728868 0
 91C:\Projects\natours-final\node_modules\eslint\lib\linter\code-path-analysis\id-generator.js133909908691377884 0
 97C:\Projects\natours-final\node_modules\mongodb\lib\cmap\auth\mongodb_oidc\machine_workflow.js.map133903181480348171 0
@@ -2278,7 +2285,6 @@
 62C:\Projects\natours-final\node_modules\proxy-from-env\index.js133909943916297306 0
 70C:\Projects\natours-final\node_modules\caniuse-lite\data\regions\VE.js133909908836559956 0
 61C:\Projects\natours-final\node_modules\validator\lib\isBIC.js133903356762184779 0
-58C:\Projects\natours-final\node_modules\synckit\index.d.cts133909908620000189 0
 104C:\Projects\natours-final\node_modules\mongoose\lib\helpers\discriminator\applyEmbeddedDiscriminators.js133909908653565785 0
 90C:\Projects\natours-final\node_modules\json-stable-stringify-without-jsonify\test\space.js133903184088680366 0
 65C:\Projects\natours-final\node_modules\validator\lib\isDecimal.js133903356762764796 0
@@ -2349,7 +2355,7 @@
 51C:\Projects\natours-final\node_modules\.bin\js-yaml133903184120445178 0
 65C:\Projects\natours-final\node_modules\validator\lib\isISO8601.js133903356764214766 0
 60C:\Projects\natours-final\node_modules\bson\src\constants.ts133903181472622593 0
-57C:\Projects\natours-final\node_modules\axios\dist\browser133909943917503456 1
+57C:\Projects\natours-final\node_modules\axios\dist\browser133909943922034682 1
 57C:\Projects\natours-final\node_modules\esrecurse\.babelrc133903184081614517 0
 57C:\Projects\natours-final\node_modules\lodash\assignIn.js133889349979687331 0
 63C:\Projects\natours-final\node_modules\sift\lib\operations.d.ts133903181470806528 0
@@ -2469,8 +2475,8 @@
 70C:\Projects\natours-final\node_modules\@parcel\utils\src\bundle-url.js133909908634777243 0
 84C:\Projects\natours-final\node_modules\resolve\test\resolver\without_basedir\main.js133905204884916634 0
 62C:\Projects\natours-final\node_modules\call-bound\package.json133903180531636630 0
-69C:\Projects\natours-final\node_modules\validator\lib\util\includes.js133903356761584789 0
 64C:\Projects\natours-final\node_modules\ajv\lib\dotjs\validate.js133903184096208099 0
+69C:\Projects\natours-final\node_modules\validator\lib\util\includes.js133903356761584789 0
 52C:\Projects\natours-final\node_modules\@types\estree133903184084646058 1
 67C:\Projects\natours-final\node_modules\mongoose\lib\drivers\browser133909908743670566 1
 76C:\Projects\natours-final\node_modules\@lmdb\lmdb-win32-x64\node.abi115.node133909908659573718 0
@@ -2848,13 +2854,6 @@
 58C:\Projects\natours-final\node_modules\undefsafe\README.md133903181020042712 0
 63C:\Projects\natours-final\node_modules\react-refresh\runtime.js133909908633465783 0
 57C:\Projects\natours-final\node_modules\type-is\HISTORY.md133903180530055688 0
-68C:\Projects\natours-final\node_modules\@swc\helpers\cjs\_extends.cjs133909908674692024 0
-56C:\Projects\natours-final\node_modules\lodash\initial.js133889350000505452 0
-55C:\Projects\natours-final\node_modules\qs\test\parse.js133903180533730120 0
-62C:\Projects\natours-final\node_modules\browserslist\browser.js133909908635328443 0
-54C:\Projects\natours-final\node_modules\prettier\doc.js133903184990077275 0
-70C:\Projects\natours-final\node_modules\htmlnano\docs\package-lock.json133909908679158442 0
-55C:\Projects\natours-final\node_modules\type-is\index.js133903180527570672 0
 53C:\Projects\natours-final\node_modules\mpath\index.js133903181467852726 0
 54C:\Projects\natours-final\node_modules\srcset\index.js133909908616656366 0
 58C:\Projects\natours-final\node_modules\ansi-styles\license133909908615056050 0
@@ -3000,6 +2999,7 @@
 58C:\Projects\natours-final\node_modules\term-size\readme.md133909908635734280 0
 61C:\Projects\natours-final\node_modules\term-size\vendor\macos133909908621500362 1
 65C:\Projects\natours-final\node_modules\mongoose\lib\collection.js133909908683203009 0
+58C:\Projects\natours-final\node_modules\synckit\index.d.cts133909908620000189 0
 54C:\Projects\natours-final\node_modules\synckit\LICENSE133909908615408144 0
 88C:\Projects\natours-final\node_modules\@parcel\package-manager\src\NodePackageManager.js133909908667172612 0
 65C:\Projects\natours-final\node_modules\mongoose\lib\helpers\query133909908758576562 1
@@ -3671,9 +3671,9 @@
 88C:\Projects\natours-final\node_modules\resolve\test\resolver\other_path\lib\other-lib.js133905204885555890 0
 55C:\Projects\natours-final\node_modules\lodash\before.js133889349981796114 0
 79C:\Projects\natours-final\node_modules\@humanwhocodes\retry\dist\retrier.min.js133903184085148146 0
+61C:\Projects\natours-final\node_modules\ajv\lib\dotjs\items.js133903184094128989 0
 90C:\Projects\natours-final\node_modules\resolve\test\resolver\nested_symlinks\mylib\sync.js133905204886530876 0
 78C:\Projects\natours-final\node_modules\caniuse-lite\data\features\png-alpha.js133909908824591994 0
-61C:\Projects\natours-final\node_modules\ajv\lib\dotjs\items.js133903184094128989 0
 81C:\Projects\natours-final\node_modules\resolve\test\resolver\multirepo\lerna.json133905204886592003 0
 83C:\Projects\natours-final\node_modules\resolve\test\resolver\multirepo\package.json133905204886982495 0
 63C:\Projects\natours-final\node_modules\lodash\_cloneDataView.js133889349935206799 0
@@ -3774,6 +3774,7 @@
 93C:\Projects\natours-final\node_modules\react-refresh\cjs\react-refresh-runtime.development.js133909908627837666 0
 66C:\Projects\natours-final\node_modules\axios\dist\axios.min.js.map133909943923569976 0
 58C:\Projects\natours-final\node_modules\raw-body\HISTORY.md133903180530055688 0
+65C:\Projects\natours-final\node_modules\cookie-parser\package.json133910279264110453 0
 82C:\Projects\natours-final\node_modules\@parcel\workers\test\integration\workerfarm133909908671930255 1
 71C:\Projects\natours-final\node_modules\@swc\helpers\_\_array_with_holes133909908742807423 1
 56C:\Projects\natours-final\node_modules\lodash\memoize.js133889350007147765 0
@@ -3812,9 +3813,10 @@
 79C:\Projects\natours-final\node_modules\@babel\types\lib\comments\addComments.js133909908676999384 0
 85C:\Projects\natours-final\node_modules\mongodb\lib\mongo_client_auth_providers.js.map133903181480379871 0
 56C:\Projects\natours-final\node_modules\qs\lib\formats.js133903180531326385 0
+58C:\Projects\natours-final\node_modules\qs\lib\stringify.js133903180536549217 0
+63C:\Projects\natours-final\node_modules\cookie-parser\HISTORY.md133910279264160429 0
 80C:\Projects\natours-final\node_modules\mongodb\src\cursor\list_indexes_cursor.ts133903181486802509 0
 84C:\Projects\natours-final\node_modules\eslint\lib\linter\apply-disable-directives.js133909908635438515 0
-58C:\Projects\natours-final\node_modules\qs\lib\stringify.js133903180536549217 0
 70C:\Projects\natours-final\node_modules\mongodb\lib\cmap\connect.js.map133903181478126291 0
 52C:\Projects\natours-final\node_modules\qs\dist\qs.js133903180536017450 0
 67C:\Projects\natours-final\node_modules\bson\vendor\base64\base64.js133903181469304825 0
@@ -3870,6 +3872,7 @@
 69C:\Projects\natours-final\node_modules\promise\lib\node-extensions.js133905204878237415 0
 55C:\Projects\natours-final\node_modules\lodash\fp\map.js133889350006747990 0
 60C:\Projects\natours-final\node_modules\pug-load\package.json133905204867579780 0
+61C:\Projects\natours-final\node_modules\cookie-parser\index.js133910279264040426 0
 57C:\Projects\natours-final\node_modules\pug-load\README.md133905204869197781 0
 61C:\Projects\natours-final\node_modules\deepmerge\package.json133905206141248887 0
 60C:\Projects\natours-final\node_modules\pug-linker\HISTORY.md133905204868810709 0
@@ -4663,6 +4666,7 @@
 65C:\Projects\natours-final\node_modules\nodemailer\lib\qp\index.js133905191505745405 0
 58C:\Projects\natours-final\node_modules\mongodb\src\beta.ts133903181484176630 0
 71C:\Projects\natours-final\node_modules\nodemailer\lib\punycode\index.js133905191505705418 0
+82C:\Projects\natours-final\node_modules\cookie-parser\node_modules\cookie-signature133910279264120426 1
 66C:\Projects\natours-final\node_modules\mongodb\lib\cmap\connect.js133903181471965798 0
 74C:\Projects\natours-final\node_modules\nodemailer\lib\mime-node\le-unix.js133905191506275571 0
 71C:\Projects\natours-final\node_modules\@parcel\events\lib\Disposable.js133909908617263406 0
@@ -5205,7 +5209,7 @@
 84C:\Projects\natours-final\node_modules\mongoose\lib\error\bulkSaveIncompleteError.js133909908679378463 0
 89C:\Projects\natours-final\node_modules\@swc\helpers\esm\_class_apply_descriptor_update.js133909908693014292 0
 76C:\Projects\natours-final\node_modules\morgan\node_modules\debug\.travis.yml133903181469643972 0
-54C:\Projects\natours-final\node_modules\axios\dist\node133909943918187360 1
+54C:\Projects\natours-final\node_modules\axios\dist\node133909943922293599 1
 77C:\Projects\natours-final\node_modules\morgan\node_modules\debug\CHANGELOG.md133903181469743963 0
 64C:\Projects\natours-final\node_modules\entities\lib\esm\index.js133889353688612626 0
 72C:\Projects\natours-final\node_modules\morgan\node_modules\debug\LICENSE133903181468487060 0
@@ -6535,8 +6539,8 @@
 62C:\Projects\natours-final\node_modules\lodash\_nativeCreate.js133889349971072245 0
 77C:\Projects\natours-final\node_modules\lmdb\node_modules\node-addon-api\tools133909908666302659 1
 66C:\Projects\natours-final\node_modules\lodash\fp\takeRightWhile.js133889350012694635 0
-60C:\Projects\natours-final\node_modules\lodash\_nativeKeys.js133889349971122215 0
 59C:\Projects\natours-final\node_modules\ajv\lib\dotjs\not.js133903184095141444 0
+60C:\Projects\natours-final\node_modules\lodash\_nativeKeys.js133889349971122215 0
 65C:\Projects\natours-final\node_modules\@lezer\common\package.json133909908633969364 0
 62C:\Projects\natours-final\node_modules\lodash\_nativeKeysIn.js133889349971132209 0
 58C:\Projects\natours-final\node_modules\lodash\_nodeUtil.js133889349971372076 0
@@ -6700,7 +6704,6 @@
 59C:\Projects\natours-final\node_modules\lodash\fp\forEach.js133889349998066840 0
 59C:\Projects\natours-final\node_modules\get-proto\index.d.ts133903180536385817 0
 57C:\Projects\natours-final\node_modules\lodash\fp\forIn.js133889349998226742 0
-69C:\Projects\natours-final\node_modules\ajv\lib\dotjs\propertyNames.js133903184095454150 0
 62C:\Projects\natours-final\node_modules\lodash\fp\forInRight.js133889349998456623 0
 58C:\Projects\natours-final\node_modules\lodash\fp\forOwn.js133889349998566553 0
 61C:\Projects\natours-final\node_modules\lodash\fp\fromPairs.js133889349998626529 0
@@ -7077,6 +7080,7 @@
 89C:\Projects\natours-final\node_modules\caniuse-lite\data\features\internationalization.js133909908775949113 0
 96C:\Projects\natours-final\node_modules\lmdb\dependencies\lmdb-data-v1\libraries\liblmdb\mtest2.c133909908680772892 0
 96C:\Projects\natours-final\node_modules\lmdb\dependencies\lmdb-data-v1\libraries\liblmdb\mtest3.c133909908681111158 0
+93C:\Projects\natours-final\node_modules\cookie-parser\node_modules\cookie-signature\.npmignore133910279264020414 0
 70C:\Projects\natours-final\node_modules\axios\lib\platform\node\classes133909943921652807 1
 96C:\Projects\natours-final\node_modules\lmdb\dependencies\lmdb-data-v1\libraries\liblmdb\mtest4.c133909908681791718 0
 53C:\Projects\natours-final\node_modules\hasown\.github133903180533730120 1
@@ -7466,7 +7470,6 @@
 76C:\Projects\natours-final\node_modules\htmlparser2\lib\esm\WritableStream.js133909908647428136 0
 80C:\Projects\natours-final\node_modules\htmlparser2\lib\esm\WritableStream.js.map133909908669677914 0
 60C:\Projects\natours-final\node_modules\htmlnano\CHANGELOG.md133909908685641702 0
-64C:\Projects\natours-final\node_modules\ajv\lib\dotjs\required.js133903184095623744 0
 52C:\Projects\natours-final\node_modules\htmlnano\docs133909908694169773 1
 76C:\Projects\natours-final\node_modules\@swc\helpers\_\_await_async_generator133909908743790590 1
 59C:\Projects\natours-final\node_modules\htmlnano\index.d.cts133909908672894752 0
@@ -7590,8 +7593,8 @@
 72C:\Projects\natours-final\node_modules\hpp\node_modules\mime-db\index.js133905768094543755 0
 64C:\Projects\natours-final\node_modules\eslint-scope\package.json133903184088954509 0
 71C:\Projects\natours-final\node_modules\hpp\node_modules\mime-db\LICENSE133905768094434172 0
-76C:\Projects\natours-final\node_modules\hpp\node_modules\mime-db\package.json133905768094823565 0
 63C:\Projects\natours-final\node_modules\ajv\lib\dotjs\pattern.js133903184095297695 0
+76C:\Projects\natours-final\node_modules\hpp\node_modules\mime-db\package.json133905768094823565 0
 57C:\Projects\natours-final\node_modules\get-intrinsic\test133903180530055688 1
 55C:\Projects\natours-final\node_modules\@parcel\core\src133909908741684453 1
 119C:\Projects\natours-final\node_modules\@parcel\source-map\parcel_sourcemap_wasm\dist-node\parcel_sourcemap_wasm_bg.wasm133909908688566691 0
@@ -7717,7 +7720,7 @@
 58C:\Projects\natours-final\node_modules\forwarded\README.md133903180530524424 0
 90C:\Projects\natours-final\node_modules\caniuse-lite\data\features\css-placeholder-shown.js133909908746283548 0
 59C:\Projects\natours-final\node_modules\form-data\index.d.ts133909943917854304 0
-52C:\Projects\natours-final\node_modules\form-data\lib133909943915931352 1
+52C:\Projects\natours-final\node_modules\form-data\lib133909943916875145 1
 56C:\Projects\natours-final\node_modules\form-data\License133909943915811327 0
 61C:\Projects\natours-final\node_modules\form-data\package.json133909943917383480 0
 79C:\Projects\natours-final\node_modules\@babel\helper-string-parser\lib\index.js133909908619301147 0
@@ -7930,7 +7933,6 @@
 69C:\Projects\natours-final\node_modules\eslint\lib\rules\complexity.js133909908673646453 0
 84C:\Projects\natours-final\node_modules\eslint\lib\rules\computed-property-spacing.js133909908674001184 0
 74C:\Projects\natours-final\node_modules\eslint\lib\rules\consistent-this.js133909908676259052 0
-61C:\Projects\natours-final\node_modules\ajv\lib\dotjs\oneOf.js133903184095141444 0
 76C:\Projects\natours-final\node_modules\eslint\lib\rules\constructor-super.js133909908676449408 0
 69C:\Projects\natours-final\node_modules\@parcel\core\src\Dependency.js133909908679648455 0
 71C:\Projects\natours-final\node_modules\eslint\lib\rules\default-case.js133909908679248482 0
@@ -8193,7 +8195,7 @@
 64C:\Projects\natours-final\node_modules\es-set-tostringtag\.nycrc133909943916041326 0
 66C:\Projects\natours-final\node_modules\es-set-tostringtag\index.js133909943916578854 0
 91C:\Projects\natours-final\node_modules\caniuse-lite\data\features\css-content-visibility.js133909908736815021 0
-62C:\Projects\natours-final\node_modules\es-set-tostringtag\test133909943916865091 1
+62C:\Projects\natours-final\node_modules\es-set-tostringtag\test133909943917072466 1
 71C:\Projects\natours-final\node_modules\es-set-tostringtag\tsconfig.json133909943917724315 0
 71C:\Projects\natours-final\node_modules\@parcel\packager-js\lib\index.js133909908656408174 0
 64C:\Projects\natours-final\node_modules\es-object-atoms\.eslintrc133903180526579815 0
@@ -8520,6 +8522,16 @@
 70C:\Projects\natours-final\node_modules\cosmiconfig\dist\types.d.ts.map133909908673019760 0
 65C:\Projects\natours-final\node_modules\cosmiconfig\dist\util.d.ts133909908677239322 0
 63C:\Projects\natours-final\node_modules\cosmiconfig\dist\util.js133909908656845209 0
+60C:\Projects\natours-final\node_modules\cookie-parser\LICENSE133910279263980449 0
+78C:\Projects\natours-final\node_modules\@parcel\packager-raw\lib\RawPackager.js133909908617023406 0
+80C:\Projects\natours-final\node_modules\@swc\helpers\cjs\_array_like_to_array.cjs133909908621904796 0
+65C:\Projects\natours-final\node_modules\cookie-parser\node_modules133910279263449807 1
+85C:\Projects\natours-final\node_modules\@parcel\core\src\registerCoreWithSerializer.js133909908728579936 0
+62C:\Projects\natours-final\node_modules\cookie-parser\README.md133910279264200440 0
+93C:\Projects\natours-final\node_modules\cookie-parser\node_modules\cookie-signature\History.md133910279264110453 0
+91C:\Projects\natours-final\node_modules\cookie-parser\node_modules\cookie-signature\index.js133910279264050468 0
+95C:\Projects\natours-final\node_modules\cookie-parser\node_modules\cookie-signature\package.json133910279263990414 0
+84C:\Projects\natours-final\node_modules\caniuse-lite\data\features\media-fragments.js133909908786294914 0
 54C:\Projects\natours-final\node_modules\cookie\index.js133903180527659899 0
 58C:\Projects\natours-final\node_modules\cookie\package.json133903180528923580 0
 55C:\Projects\natours-final\node_modules\cookie\README.md133903180530055688 0
@@ -8551,7 +8563,7 @@
 57C:\Projects\natours-final\node_modules\concat-map\LICENSE133903181018696281 0
 56C:\Projects\natours-final\node_modules\commander\typings133909908629713715 1
 81C:\Projects\natours-final\node_modules\@parcel\core\test\fixtures\invalid-engines133909908743503991 1
-58C:\Projects\natours-final\node_modules\combined-stream\lib133909943917022491 1
+58C:\Projects\natours-final\node_modules\combined-stream\lib133909943917222451 1
 67C:\Projects\natours-final\node_modules\combined-stream\package.json133909943915661331 0
 64C:\Projects\natours-final\node_modules\combined-stream\Readme.md133909943916297306 0
 77C:\Projects\natours-final\node_modules\combined-stream\lib\combined_stream.js133909943917322456 0
@@ -8918,7 +8930,6 @@
 86C:\Projects\natours-final\node_modules\caniuse-lite\data\features\loading-lazy-attr.js133909908784445258 0
 75C:\Projects\natours-final\node_modules\caniuse-lite\data\features\mathml.js133909908785291189 0
 100C:\Projects\natours-final\node_modules\caniuse-lite\data\features\mdn-css-backdrop-pseudo-element.js133909908785471168 0
-84C:\Projects\natours-final\node_modules\caniuse-lite\data\features\media-fragments.js133909908786294914 0
 73C:\Projects\natours-final\node_modules\caniuse-lite\data\features\menu.js133909908787180059 0
 85C:\Projects\natours-final\node_modules\caniuse-lite\data\features\meta-theme-color.js133909908787220039 0
 73C:\Projects\natours-final\node_modules\caniuse-lite\data\features\midi.js133909908788610111 0
@@ -9164,7 +9175,7 @@
 65C:\Projects\natours-final\node_modules\@parcel\watcher\wrapper.js133909908673616474 0
 58C:\Projects\natours-final\node_modules\axios\dist\axios.js133909943918821675 0
 62C:\Projects\natours-final\node_modules\axios\dist\axios.js.map133909943922818656 0
-53C:\Projects\natours-final\node_modules\axios\dist\esm133909943918861660 1
+53C:\Projects\natours-final\node_modules\axios\dist\esm133909943923619986 1
 64C:\Projects\natours-final\node_modules\axios\dist\node\axios.cjs133909943918417333 0
 66C:\Projects\natours-final\node_modules\axios\dist\esm\axios.js.map133909943923290770 0
 66C:\Projects\natours-final\node_modules\axios\dist\esm\axios.min.js133909943919346150 0
@@ -9200,9 +9211,14 @@
 62C:\Projects\natours-final\node_modules\ajv\lib\dotjs\format.js133903184093764378 0
 61C:\Projects\natours-final\node_modules\ajv\lib\dotjs\index.js133903184094128989 0
 66C:\Projects\natours-final\node_modules\ajv\lib\dotjs\multipleOf.js133903184094985155 0
+61C:\Projects\natours-final\node_modules\ajv\lib\dotjs\oneOf.js133903184095141444 0
 86C:\Projects\natours-final\node_modules\@swc\helpers\esm\_class_private_field_update.js133909908695818812 0
 66C:\Projects\natours-final\node_modules\ajv\lib\dotjs\properties.js133903184095297695 0
+69C:\Projects\natours-final\node_modules\ajv\lib\dotjs\propertyNames.js133903184095454150 0
+62C:\Projects\natours-final\node_modules\ajv\lib\dotjs\README.md133903184099619563 0
 59C:\Projects\natours-final\node_modules\ajv\lib\dotjs\ref.js133903184095454150 0
+64C:\Projects\natours-final\node_modules\ajv\lib\dotjs\required.js133903184095623744 0
+67C:\Projects\natours-final\node_modules\ajv\lib\dotjs\uniqueItems.js133903184096051857 0
 80C:\Projects\natours-final\node_modules\@swc\helpers\cjs\_object_spread_props.cjs133909908680145054 0
 62C:\Projects\natours-final\node_modules\ajv\lib\dotjs\_limit.js133903184088302309 0
 67C:\Projects\natours-final\node_modules\ajv\lib\dotjs\_limitItems.js133903184088467703 0
@@ -9575,8 +9591,6 @@
 65C:\Projects\natours-final\node_modules\@swc\helpers\cjs\index.cjs133909908688566691 0
 87C:\Projects\natours-final\node_modules\@swc\helpers\cjs\_apply_decorated_descriptor.cjs133909908616933400 0
 78C:\Projects\natours-final\node_modules\@swc\helpers\cjs\_apply_decs_2203_r.cjs133909908619672574 0
-78C:\Projects\natours-final\node_modules\@parcel\packager-raw\lib\RawPackager.js133909908617023406 0
-80C:\Projects\natours-final\node_modules\@swc\helpers\cjs\_array_like_to_array.cjs133909908621904796 0
 80C:\Projects\natours-final\node_modules\@swc\helpers\cjs\_array_without_holes.cjs133909908629004686 0
 57C:\Projects\natours-final\node_modules\.bin\cross-env.cmd133903182085902858 0
 77C:\Projects\natours-final\node_modules\@swc\helpers\cjs\_array_with_holes.cjs133909908624568242 0
@@ -10031,7 +10045,7 @@
 84C:\Projects\natours-final\node_modules\@parcel\reporter-tracer\src\TracerReporter.js133909908619732601 0
 84C:\Projects\natours-final\node_modules\@parcel\reporter-tracer\lib\TracerReporter.js133909908617003404 0
 70C:\Projects\natours-final\node_modules\@parcel\reporter-dev-server\lib133909908670067922 1
-55C:\Projects\natours-final\controllers\viewController.js133909958822803330 0
+55C:\Projects\natours-final\controllers\viewController.js133910293931146683 0
 74C:\Projects\natours-final\node_modules\@parcel\reporter-dev-server\LICENSE133909908615298125 0
 79C:\Projects\natours-final\node_modules\@parcel\reporter-dev-server\package.json133909908669827974 0
 82C:\Projects\natours-final\node_modules\@parcel\compressor-raw\lib\RawCompressor.js133909908617331011 0
@@ -10325,7 +10339,6 @@
 75C:\Projects\natours-final\node_modules\@parcel\core\src\loadParcelPlugin.js133909908687677825 0
 65C:\Projects\natours-final\node_modules\@parcel\core\src\Parcel.js133909908690448010 0
 62C:\Projects\natours-final\node_modules\@parcel\core\src\public133909908736835017 1
-85C:\Projects\natours-final\node_modules\@parcel\core\src\registerCoreWithSerializer.js133909908728579936 0
 73C:\Projects\natours-final\node_modules\@parcel\core\src\ReporterRunner.js133909908729332958 0
 64C:\Projects\natours-final\node_modules\@parcel\core\src\requests133909908742259057 1
 81C:\Projects\natours-final\node_modules\@parcel\core\src\serializerCore.browser.js133909908731820014 0
@@ -10753,7 +10766,7 @@
 53C:\Projects\natours-final\dev-data\img\new-tour-3.jpg133755454870000000 0
 58C:\Projects\natours-final\dev-data\data\import-dev-data.js133755454870000000 0
 48C:\Projects\natours-final\dev-data\data\tour5.js133755454870000000 0
-55C:\Projects\natours-final\controllers\authController.js133907670692698256 0
+55C:\Projects\natours-final\controllers\authController.js133910280926238289 0
 56C:\Projects\natours-final\controllers\errorController.js133905649719573591 0
 55C:\Projects\natours-final\controllers\handlerFactory.js133908522479577727 0
 57C:\Projects\natours-final\controllers\reviewController.js133907657698868996 0

@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const rateLimiter = require('express-rate-limit');
+const cookieParser = require('cookie-parser');
 const AppError = require('./utils/appError');
 const sanitize = require('./utils/sanitize');
 const xss = require('./utils/xss');
@@ -25,6 +26,9 @@ app.use(
 
 //Body-parser
 app.use(express.json({ limit: '10kb' }));
+
+//Cookie-parser
+app.use(cookieParser());
 
 //Serve static files
 app.use(express.static('public'));
