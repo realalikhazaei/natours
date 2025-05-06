@@ -47,7 +47,17 @@ app.use((req, res, next) => {
 });
 
 //Special HTTP headers with Helmet
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", 'https://cdnjs.cloudflare.com'],
+        imgSrc: ["'self'", 'https://tile.openstreetmap.org', 'https://cdnjs.cloudflare.com'],
+      },
+    },
+  }),
+);
 
 //Avoid parameter pollution
 app.use((req, res, next) => {
