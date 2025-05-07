@@ -122,7 +122,7 @@ const resetPassword = async (req, res, next) => {
   await signSendToken(user._id, res, 'Your password has been reset successfully.');
 };
 
-const changePassword = async (req, res, next) => {
+const updatePassword = async (req, res, next) => {
   const user = await User.findById(req.user._id).select('+password');
 
   const { currentPassword } = req.body;
@@ -175,7 +175,7 @@ module.exports = {
   restrictTo,
   forgotPassword,
   resetPassword,
-  changePassword,
+  updatePassword,
   logout,
   isLoggedIn,
 };

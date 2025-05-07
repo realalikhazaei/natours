@@ -669,9 +669,12 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"f2QDv":[function(require,module,exports,__globalThis) {
 var _map = require("./map");
 var _login = require("./login");
+var _updateSettings = require("./updateSettings");
 const map = document.getElementById('map');
 const loginForm = document.querySelector('.login-form');
 const logoutBtn = document.getElementById('logout');
+const updateInfoForm = document.querySelector('.form-user-data');
+const updatePassForm = document.querySelector('.form-user-settings');
 if (map) (0, _map.displayMap)(JSON.parse(map.dataset.locations));
 if (loginForm) loginForm.addEventListener('submit', (event)=>{
     event.preventDefault();
@@ -685,8 +688,37 @@ if (loginForm) loginForm.addEventListener('submit', (event)=>{
 if (logoutBtn) logoutBtn.addEventListener('click', ()=>{
     (0, _login.logout)();
 });
+if (updateInfoForm) updateInfoForm.addEventListener('submit', async (event)=>{
+    event.preventDefault();
+    document.getElementById('save-info').textContent = 'Updating...';
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    await (0, _updateSettings.updateSettings)({
+        name,
+        email
+    }, 'info');
+    document.getElementById('save-info').textContent = 'Save settings';
+});
+if (updatePassForm) updatePassForm.addEventListener('submit', async (event)=>{
+    event.preventDefault();
+    document.getElementById('save-pass').textContent = 'Updating...';
+    const currentPassword = document.getElementById('password-current').value;
+    const newPassword = document.getElementById('password').value;
+    const newPasswordConfirm = document.getElementById('password-confirm').value;
+    [
+        'password-current',
+        'password',
+        'password-confirm'
+    ].forEach((el)=>document.getElementById(el).value = '');
+    await (0, _updateSettings.updateSettings)({
+        currentPassword,
+        newPassword,
+        newPasswordConfirm
+    }, 'password');
+    document.getElementById('save-pass').textContent = 'Save password';
+});
 
-},{"./map":"GDuAq","./login":"7yHem"}],"GDuAq":[function(require,module,exports,__globalThis) {
+},{"./map":"GDuAq","./login":"7yHem","./updateSettings":"l3cGY"}],"GDuAq":[function(require,module,exports,__globalThis) {
 /* eslint-disable */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "displayMap", ()=>displayMap);
@@ -784,7 +816,6 @@ const login = async (data)=>{
             data
         });
         if (res.data.status === 'success') {
-            console.log(res.data);
             (0, _alert.showAlert)('success', res.data.message);
             window.setTimeout(()=>{
                 location.assign('/');
@@ -5603,6 +5634,26 @@ const showAlert = (type, message)=>{
     setTimeout(hideAlert, 5000);
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["96u8M","f2QDv"], "f2QDv", "parcelRequire11c7", {})
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"l3cGY":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "updateSettings", ()=>updateSettings);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _alert = require("./alert");
+const updateSettings = async (data, type = 'info')=>{
+    try {
+        const res = await (0, _axiosDefault.default)({
+            url: `/api/v1/users/update-my-${type}`,
+            method: 'PATCH',
+            data
+        });
+        if (res.data.status === 'success') (0, _alert.showAlert)('success', res.data.message);
+    } catch (err) {
+        (0, _alert.showAlert)('error', err.response.data.message);
+    }
+};
+
+},{"axios":"jo6P5","./alert":"kxdiQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["96u8M","f2QDv"], "f2QDv", "parcelRequire11c7", {})
 
 //# sourceMappingURL=index.js.map

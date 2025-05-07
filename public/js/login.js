@@ -10,7 +10,6 @@ export const login = async data => {
     });
 
     if (res.data.status === 'success') {
-      console.log(res.data);
       showAlert('success', res.data.message);
       window.setTimeout(() => {
         location.assign('/');
