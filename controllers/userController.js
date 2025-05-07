@@ -1,6 +1,8 @@
+const sharp = require('sharp');
 const User = require('../models/userModel');
-const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
+const AppError = require('../utils/appError');
+const multerUpload = require('../utils/multer');
 
 const getAllUsers = factory.getAll(User);
 
@@ -17,7 +19,8 @@ const updateMe = async (req, res, next) => {
     return next(new AppError('For updating your password, please head to this route instead: /change-password', 400));
 
   const { name, email } = req.body;
-  const user = await User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true });
+  const { photo } = req.body.photo === 'undefined' ? req.user : req.body;
+  const user = await User.findByIdAndUpdate(req.user._id, { name, email, photo }, { new: true, runValidators: true });
 
   res.status(200).json({
     status: 'success',
@@ -39,4 +42,32 @@ const getMe = (req, res, next) => {
   (req.params.id = req.user._id), next();
 };
 
-module.exports = { getAllUsers, getUser, createUser, updateUser, deleteUser, updateMe, deleteMe, getMe };
+//User photo upload
+const uploadUserPhoto = multerUpload.single('photo');
+const processUserPhoto = async (req, res, next) => {
+  if (!req.file) return next();
+
+  req.body.photo = `user-${req.user._id}-${Date.now()}.jpg`;
+
+  console.log(req.body.photo);
+  await sharp(req.file.buffer)
+    .resize(500, 500)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`${__dirname}/../public/img/users/${req.body.photo}`);
+
+  next();
+};
+
+module.exports = {
+  getAllUsers,
+  getUser,
+  createUser,
+  updateUser,
+  deleteUser,
+  updateMe,
+  deleteMe,
+  getMe,
+  uploadUserPhoto,
+  processUserPhoto,
+};

@@ -33,10 +33,12 @@ if (updateInfoForm) {
 
     document.getElementById('save-info').textContent = 'Updating...';
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
+    const form = new FormData();
 
-    await updateSettings({ name, email }, 'info');
+    ['name', 'email'].forEach(el => form.append(el, document.getElementById(el).value));
+    form.append('photo', document.getElementById('photo').files[0]);
+
+    await updateSettings(form, 'info');
     document.getElementById('save-info').textContent = 'Save settings';
   });
 }

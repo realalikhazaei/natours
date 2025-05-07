@@ -691,12 +691,13 @@ if (logoutBtn) logoutBtn.addEventListener('click', ()=>{
 if (updateInfoForm) updateInfoForm.addEventListener('submit', async (event)=>{
     event.preventDefault();
     document.getElementById('save-info').textContent = 'Updating...';
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    await (0, _updateSettings.updateSettings)({
-        name,
-        email
-    }, 'info');
+    const form = new FormData();
+    [
+        'name',
+        'email'
+    ].forEach((el)=>form.append(el, document.getElementById(el).value));
+    form.append('photo', document.getElementById('photo').files[0]);
+    await (0, _updateSettings.updateSettings)(form, 'info');
     document.getElementById('save-info').textContent = 'Save settings';
 });
 if (updatePassForm) updatePassForm.addEventListener('submit', async (event)=>{
