@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const rateLimiter = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
+const cors = require('cors');
 const AppError = require('./utils/appError');
 const sanitize = require('./utils/sanitize');
 const xss = require('./utils/xss');
@@ -88,6 +90,13 @@ app.use((req, res, next) => {
   });
   next();
 });
+
+//Compress responses
+app.use(compression());
+
+//Enable CORS
+app.use(cors());
+app.options(/.*/, cors());
 
 //Routers
 app.use('/api/v1/tours', tourRouter);

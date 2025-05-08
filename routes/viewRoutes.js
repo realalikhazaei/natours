@@ -3,6 +3,7 @@ const {
   getOverview,
   getTour,
   getLogin,
+  getSignup,
   getProfile,
   getPaymentStatus,
   getBookings,
@@ -18,6 +19,7 @@ router.get('/payStatus', protectRoute, getPaymentStatus);
 router.get('/my-profile', getProfile);
 router.get('/my-bookings', protectRoute, getBookings);
 router.get('/login', getLogin);
+router.get('/signup', getSignup);
 router.get('/', getOverview);
 
 module.exports = router;

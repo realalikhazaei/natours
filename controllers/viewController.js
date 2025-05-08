@@ -25,6 +25,12 @@ const getLogin = (req, res) => {
   });
 };
 
+const getSignup = (req, res) => {
+  res.status(200).render('signup', {
+    title: 'Sign Up',
+  });
+};
+
 const getProfile = (req, res) => {
   res.status(200).render('profile', {
     title: 'My Profile',
@@ -55,4 +61,4 @@ const getBookings = async (req, res, next) => {
   });
 };
 
-module.exports = { getOverview, getTour, getLogin, getProfile, getPaymentStatus, getBookings };
+module.exports = { getOverview, getTour, getLogin, getSignup, getProfile, getPaymentStatus, getBookings };

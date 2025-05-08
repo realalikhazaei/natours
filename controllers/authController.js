@@ -13,13 +13,13 @@ const { promisify } = require('util');
  * @param {number} statusCode
  * @default statusCode=200
  */
-const signSendToken = async (id, res, message, statusCode = 200) => {
+const signSendToken = async (id, req, res, message, statusCode = 200) => {
   const token = await promisify(jwt.sign)({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
 
   res.cookie('jwt', token, {
     expires: new Date(Date.now() + +process.env.COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production' ? true : false,
+    secure: true,
   });
 
   res.status(statusCode).json({
@@ -42,7 +42,7 @@ const signup = async (req, res, next) => {
     });
   }
 
-  await signSendToken(user._id, res, 'Your account has been created successfully', 201);
+  await signSendToken(user._id, req, res, 'Your account has been created successfully', 201);
 };
 
 const login = async (req, res, next) => {
@@ -54,7 +54,7 @@ const login = async (req, res, next) => {
   const correct = await user?.verifyPassword(password);
   if (!user || !correct) return next(new AppError('There is no account with this email and password', 400));
 
-  await signSendToken(user._id, res, 'You have been logged in successfully');
+  await signSendToken(user._id, req, res, 'You have been logged in successfully');
 };
 
 const protectRoute = async (req, res, next) => {
@@ -129,7 +129,7 @@ const resetPassword = async (req, res, next) => {
   user.passwordResetExpires = undefined;
   await user.save();
 
-  await signSendToken(user._id, res, 'Your password has been reset successfully.');
+  await signSendToken(user._id, req, res, 'Your password has been reset successfully.');
 };
 
 const updatePassword = async (req, res, next) => {
@@ -146,7 +146,7 @@ const updatePassword = async (req, res, next) => {
   user.passwordConfirm = newPasswordConfirm;
   await user.save();
 
-  await signSendToken(user._id, res, 'Your password has been changed successfully.');
+  await signSendToken(user._id, req, res, 'Your password has been changed successfully.');
 };
 
 const logout = (req, res) => {

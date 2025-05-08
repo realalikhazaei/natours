@@ -8,6 +8,7 @@ const devErr = (err, req, res) => {
       message: err.message,
       stack: err.stack,
     });
+    return;
   }
 
   res.status(err.statusCode).render('error', {
@@ -29,6 +30,7 @@ const prodErr = (err, req, res) => {
         message: 'Something went wrong',
       });
     }
+    return;
   }
 
   if (err.isOperational) {
