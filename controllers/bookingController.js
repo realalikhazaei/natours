@@ -61,8 +61,8 @@ const getPaymentStatus = async (req, res, next) => {
   const booking = await Booking.findOne({ order });
 
   res.status(200).render('payStatus', {
-    status: 'success',
-    data: booking,
+    title: 'Payment Status',
+    booking,
   });
 };
 

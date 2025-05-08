@@ -11,11 +11,10 @@ export const payment = async tour => {
     });
 
     if (res.data.status === 'success') {
-      console.log(res.data.data.track);
       showAlert('success', res.data.message);
       window.setTimeout(() => {
         location.assign(`https://gateway.zibal.ir/start/${res.data.data.track}`);
-      });
+      }, 1500);
     }
   } catch (err) {
     showAlert('error', err.response.data.message);

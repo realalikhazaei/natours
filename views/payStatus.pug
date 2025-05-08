@@ -4,10 +4,13 @@ block content
   main.main
     .payment
       .payment__title
-        - if (booking.order === 'notfound')
-          h2.heading-secondary.heading-secondary--error No order ID was found!!!
-        - if (booking.paid === false)
-          h2.heading-secondary.heading-secondary--error The order payment was not successful
-        - if (booking.paid === true)
+      if booking
+        - if (booking.paid)
           h2.heading-secondary The order payment was successful
-      .payment__msg= `Order ID: ${booking.order}`
+        - if (!booking.paid)
+          h2.heading-secondary.heading-secondary--error The order payment was not successful
+        .payment__msg= `Order ID: ${booking.order}`  
+      - if (!booking)
+        h2.heading-secondary.heading-secondary--error No order ID was found!!!
+      //- if booking
+      //-   .payment__msg= `Order ID: ${booking.order}`
