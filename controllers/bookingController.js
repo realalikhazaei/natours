@@ -55,15 +55,4 @@ const verifyCheckoutSession = async (req, res, next) => {
   res.redirect(`/payStatus?order=${orderId}`);
 };
 
-const getPaymentStatus = async (req, res, next) => {
-  const { order = 'notfound' } = req.query;
-
-  const booking = await Booking.findOne({ order });
-
-  res.status(200).render('payStatus', {
-    title: 'Payment Status',
-    booking,
-  });
-};
-
-module.exports = { getCheckoutSession, verifyCheckoutSession, getPaymentStatus };
+module.exports = { getCheckoutSession, verifyCheckoutSession };

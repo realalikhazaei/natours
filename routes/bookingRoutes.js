@@ -1,6 +1,7 @@
 const express = require('express');
 const { protectRoute } = require('../controllers/authController');
-const { getCheckoutSession, verifyCheckoutSession, getPaymentStatus } = require('../controllers/bookingController');
+const { getCheckoutSession, verifyCheckoutSession } = require('../controllers/bookingController');
+const { getPaymentStatus } = require('../controllers/viewController');
 
 const router = express.Router();
 
