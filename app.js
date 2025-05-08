@@ -11,12 +11,14 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
+const bookingRouter = require('./routes/bookingRoutes');
 const gloablErrorHandler = require('./controllers/errorController');
 
 const app = express();
 
 //Rate-limit
 app.use(
+  '/api',
   rateLimiter({
     max: 100,
     windowsMs: 60 * 60 * 1000,
@@ -91,6 +93,7 @@ app.use((req, res, next) => {
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/bookings', bookingRouter);
 app.use('/', viewRouter);
 
 //Global error handler

@@ -1,23 +1,44 @@
 const AppError = require('../utils/appError');
 
-const devErr = (err, res) => {
-  res.status(err.statusCode).json({
-    status: err.status,
-    error: err,
-    message: err.message,
-    stack: err.stack,
+const devErr = (err, req, res) => {
+  if (req.originalUrl.startsWith('/api')) {
+    res.status(err.statusCode).json({
+      status: err.status,
+      error: err,
+      message: err.message,
+      stack: err.stack,
+    });
+  }
+
+  res.status(err.statusCode).render('error', {
+    title: 'Something went wrong',
+    message: err,
   });
 };
 
-const prodErr = (err, res) => {
+const prodErr = (err, req, res) => {
+  if (req.originalUrl.startsWith('/api')) {
+    if (err.isOperational) {
+      res.status(err.statusCode).json({
+        status: err.status,
+        message: err.message,
+      });
+    } else {
+      res.status(500).json({
+        status: 'error',
+        message: 'Something went wrong',
+      });
+    }
+  }
+
   if (err.isOperational) {
-    res.status(err.statusCode).json({
-      status: err.status,
+    res.status(err.statusCode).render('error', {
+      title: 'Something went wrong',
       message: err.message,
     });
   } else {
-    res.status(500).json({
-      status: 'error',
+    res.status(500).render('error', {
+      title: 'Something went wrong',
       message: 'Something went wrong',
     });
   }
@@ -42,7 +63,7 @@ const gloablErrorHandler = async (err, req, res, next) => {
   err.statusCode ||= 500;
   err.status ||= 'error';
 
-  if (process.env.NODE_ENV === 'development') devErr(err, res);
+  if (process.env.NODE_ENV === 'development') devErr(err, req, res);
   if (process.env.NODE_ENV === 'production') {
     let error = { ...err };
     if (err.name === 'CastError') error = invalidIdErr(err);
@@ -51,7 +72,7 @@ const gloablErrorHandler = async (err, req, res, next) => {
     if (err.name === 'JsonWebTokenError') error = invalidJwtErr();
     if (err.name === 'TokenExpiredError') error = expiredJwtErr();
 
-    prodErr(error, res);
+    prodErr(error, req, res);
   }
 };
 

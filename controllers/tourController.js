@@ -1,5 +1,7 @@
+const sharp = require('sharp');
 const Tour = require('../models/tourModel');
 const factory = require('./handlerFactory');
+const multerUpload = require('../utils/multer');
 
 const getAllTours = factory.getAll(Tour);
 
@@ -123,6 +125,36 @@ const toursDistances = async (req, res, next) => {
   });
 };
 
+//Tour images upload
+const uploadTourImages = multerUpload.fields([
+  { name: 'imageCover', maxCount: 1 },
+  { name: 'images', maxCount: 3 },
+]);
+const processTourImages = async (req, res, next) => {
+  if (!req.files) return next();
+
+  req.body.imageCover = `tour-${req.params.id}-${Date.now()}-cover.jpg`;
+  await sharp(req.files.imageCover[0].buffer)
+    .resize(2000, 1333)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`${__dirname}/../public/img/tours/${req.body.imageCover}`);
+
+  req.body.images = [];
+  const images = req.files.images.map(async (el, i) => {
+    const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpg`;
+    await sharp(el.buffer)
+      .resize(2000, 1333)
+      .toFormat('jpeg')
+      .jpeg({ quality: 90 })
+      .toFile(`${__dirname}/../public/img/tours/${filename}`);
+    req.body.images.push(filename);
+  });
+  await Promise.all(images);
+
+  next();
+};
+
 module.exports = {
   getAllTours,
   getTour,
@@ -134,4 +166,6 @@ module.exports = {
   monthlyPlan,
   toursWithinRange,
   toursDistances,
+  uploadTourImages,
+  processTourImages,
 };

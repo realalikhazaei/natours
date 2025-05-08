@@ -6,9 +6,9 @@ const router = express.Router();
 
 router.use(isLoggedIn);
 
-router.get('/', getOverview);
-router.get('/login', getLogin);
+router.get('/tour/{:slug}', getTour);
 router.get('/my-profile', getProfile);
-router.get('/:slug', getTour);
+router.get('/login', getLogin);
+router.get('/', getOverview);
 
 module.exports = router;

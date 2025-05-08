@@ -1,12 +1,14 @@
 import { displayMap } from './map';
 import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
+import { payment } from './payment';
 
 const map = document.getElementById('map');
 const loginForm = document.querySelector('.login-form');
 const logoutBtn = document.getElementById('logout');
 const updateInfoForm = document.querySelector('.form-user-data');
 const updatePassForm = document.querySelector('.form-user-settings');
+const bookTour = document.getElementById('book-tour');
 
 if (map) {
   displayMap(JSON.parse(map.dataset.locations));
@@ -57,5 +59,11 @@ if (updatePassForm) {
 
     await updateSettings({ currentPassword, newPassword, newPasswordConfirm }, 'password');
     document.getElementById('save-pass').textContent = 'Save password';
+  });
+}
+
+if (bookTour) {
+  bookTour.addEventListener('click', event => {
+    payment(bookTour.dataset.tour);
   });
 }

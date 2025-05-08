@@ -670,11 +670,13 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 var _map = require("./map");
 var _login = require("./login");
 var _updateSettings = require("./updateSettings");
+var _payment = require("./payment");
 const map = document.getElementById('map');
 const loginForm = document.querySelector('.login-form');
 const logoutBtn = document.getElementById('logout');
 const updateInfoForm = document.querySelector('.form-user-data');
 const updatePassForm = document.querySelector('.form-user-settings');
+const bookTour = document.getElementById('book-tour');
 if (map) (0, _map.displayMap)(JSON.parse(map.dataset.locations));
 if (loginForm) loginForm.addEventListener('submit', (event)=>{
     event.preventDefault();
@@ -718,8 +720,11 @@ if (updatePassForm) updatePassForm.addEventListener('submit', async (event)=>{
     }, 'password');
     document.getElementById('save-pass').textContent = 'Save password';
 });
+if (bookTour) bookTour.addEventListener('click', (event)=>{
+    (0, _payment.payment)(bookTour.dataset.tour);
+});
 
-},{"./map":"GDuAq","./login":"7yHem","./updateSettings":"l3cGY"}],"GDuAq":[function(require,module,exports,__globalThis) {
+},{"./map":"GDuAq","./login":"7yHem","./updateSettings":"l3cGY","./payment":"iiRz7"}],"GDuAq":[function(require,module,exports,__globalThis) {
 /* eslint-disable */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "displayMap", ()=>displayMap);
@@ -5650,6 +5655,35 @@ const updateSettings = async (data, type = 'info')=>{
             data
         });
         if (res.data.status === 'success') (0, _alert.showAlert)('success', res.data.message);
+    } catch (err) {
+        (0, _alert.showAlert)('error', err.response.data.message);
+    }
+};
+
+},{"axios":"jo6P5","./alert":"kxdiQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iiRz7":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "payment", ()=>payment);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _alert = require("./alert");
+const payment = async (tour)=>{
+    console.log(tour);
+    try {
+        const res = await (0, _axiosDefault.default)({
+            url: '/api/v1/bookings/checkout-session',
+            method: 'POST',
+            data: {
+                tour
+            }
+        });
+        if (res.data.status === 'success') {
+            console.log(res.data.data.track);
+            (0, _alert.showAlert)('success', res.data.message);
+            window.setTimeout(()=>{
+                location.assign(`https://gateway.zibal.ir/start/${res.data.data.track}`);
+            });
+        }
     } catch (err) {
         (0, _alert.showAlert)('error', err.response.data.message);
     }
