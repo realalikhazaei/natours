@@ -6,10 +6,10 @@
   "author": "Ali",
   "type": "commonjs",
   "scripts": {
-    "start": "cross-env nodemon server.js",
+    "start": "nodemon server.js",
     "start:prod": "cross-env NODE_ENV=production nodemon server.js",
     "lint": "eslint",
-    "debug": "cross-env ndb server.js",
+    "debug": "ndb server.js",
     "parcel:watch": "parcel watch ./public/js/index.js --dist-dir ./public/js/bundle",
     "parcel:build": "parcel build ./public/js/index.js --dist-dir ./public/js/bundle"
   },

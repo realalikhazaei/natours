@@ -49,7 +49,6 @@ const processUserPhoto = async (req, res, next) => {
 
   req.body.photo = `user-${req.user._id}-${Date.now()}.jpg`;
 
-  console.log(req.body.photo);
   await sharp(req.file.buffer)
     .resize(500, 500)
     .toFormat('jpeg')

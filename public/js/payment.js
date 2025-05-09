@@ -2,7 +2,6 @@ import axios from 'axios';
 import { showAlert } from './alert';
 
 export const payment = async tour => {
-  console.log(tour);
   try {
     const res = await axios({
       url: '/api/v1/bookings/checkout-session',

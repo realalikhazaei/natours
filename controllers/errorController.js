@@ -48,7 +48,7 @@ const prodErr = (err, req, res) => {
 
 const invalidIdErr = err => new AppError(`Invalid ID: ${err.value}`, 400);
 
-const duplicateErr = err => new AppError(err.message, 400);
+const duplicateNameErr = err => new AppError(err.message, 400);
 
 const validationErr = err => {
   const message = Object.values(err.errors)
@@ -61,6 +61,8 @@ const invalidJwtErr = () => new AppError('Your login session has gone wrong. Ple
 
 const expiredJwtErr = () => new AppError('Your login sesion is expired. Please login again.', 401);
 
+const duplicateReviewErr = () => new AppError('You cannot review a tour booking more than once', 400);
+
 const gloablErrorHandler = async (err, req, res, next) => {
   err.statusCode ||= 500;
   err.status ||= 'error';
@@ -69,10 +71,11 @@ const gloablErrorHandler = async (err, req, res, next) => {
   if (process.env.NODE_ENV === 'production') {
     let error = { ...err };
     if (err.name === 'CastError') error = invalidIdErr(err);
-    if (err.stack.startsWith('MongooseError')) error = duplicateErr(err);
+    if (err.stack.startsWith('MongooseError')) error = duplicateNameErr(err);
     if (err.name === 'ValidationError') error = validationErr(err);
     if (err.name === 'JsonWebTokenError') error = invalidJwtErr();
     if (err.name === 'TokenExpiredError') error = expiredJwtErr();
+    if (err.code === 11000) error = duplicateReviewErr();
 
     prodErr(error, req, res);
   }

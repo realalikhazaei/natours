@@ -32,6 +32,9 @@ const reviewSchema = new mongoose.Schema(
   },
 );
 
+//Compound index for unique user and tour ID
+reviewSchema.index({ user: 1, tour: 1 }, { unique: true });
+
 //Populating users
 reviewSchema.pre(/^find/, function (next) {
   this.populate({ path: 'user', select: 'name photo' });
@@ -59,7 +62,7 @@ reviewSchema.statics.calcRatings = async function (tour) {
   });
 };
 reviewSchema.post(['save', /^findOneAnd/], async function (doc) {
-  await this.model.calcRatings(doc.tour);
+  await doc.constructor.calcRatings(doc.tour);
 });
 
 const Review = mongoose.model('Review', reviewSchema);
