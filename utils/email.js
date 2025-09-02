@@ -5,34 +5,22 @@ const htmlToText = require('html-to-text');
 const Email = class {
   #url;
   constructor(user, url = '') {
-    this.from = process.env.NODE_ENV === 'production' ? process.env.YAHOO_FROM : process.env.MAILTRAP_FROM;
+    this.from = process.env.SMTP_FROM;
     this.to = user.email;
     this.firstName = user.name.split(' ')[0];
     this.#url = url;
   }
 
   transporter() {
-    if (process.env.NODE_ENV === 'production') {
-      return nodemailer.createTransport({
-        secure: true,
-        host: process.env.YAHOO_HOST,
-        port: process.env.YAHOO_PORT,
-        auth: {
-          user: process.env.YAHOO_USER,
-          pass: process.env.YAHOO_PASS,
-        },
-      });
-    } else {
-      return nodemailer.createTransport({
-        debug: true,
-        host: process.env.MAILTRAP_HOST,
-        port: process.env.MAILTRAP_PORT,
-        auth: {
-          user: process.env.MAILTRAP_USER,
-          pass: process.env.MAILTRAP_PASS,
-        },
-      });
-    }
+    return nodemailer.createTransport({
+      secure: true,
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
   }
 
   async sendText(subject) {
