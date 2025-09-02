@@ -14,7 +14,8 @@ const deleteReview = factory.deleteOne(Review);
 
 const getTourUserId = (req, res, next) => {
   req.body.tour ||= req.params.tour;
-  (req.body.user ||= req.user._id), next();
+  req.body.user ||= req.user._id;
+  next();
 };
 
 module.exports = { getAllReviews, getReview, createReview, updateReview, deleteReview, getTourUserId };

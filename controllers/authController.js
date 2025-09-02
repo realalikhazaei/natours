@@ -33,15 +33,6 @@ const signup = async (req, res, next) => {
   const { name, email, password, passwordConfirm } = req.body;
   const user = await User.create({ name, email, password, passwordConfirm });
 
-  try {
-    await new Email(user).sendWelcome();
-  } catch (err) {
-    return res.status(500).json({
-      status: 'error',
-      message: 'Something went wrong. Please try again later.',
-    });
-  }
-
   await signSendToken(user._id, req, res, 'Your account has been created successfully', 201);
 };
 

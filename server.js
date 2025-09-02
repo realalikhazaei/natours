@@ -20,9 +20,8 @@ process.on('unhandledRejection', err => {
 });
 
 //Conncting to database
-const DB = process.env.DATABASE_CONNECT.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
 mongoose
-  .connect(DB)
+  .connect(process.env.DATABASE_URL)
   .then(() => console.log('Connection to the database has been established'))
   .catch(() => console.log('Could not connect to the database'));
 
